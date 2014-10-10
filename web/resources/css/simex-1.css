@@ -1,0 +1,104 @@
+@charset "utf-8";
+/* CSS Document */
+
+#cuerpo{
+    background-image:url(../img/bg.gif);
+}
+
+#login{
+    width:356px;
+    height:409px;
+    background:url(../img/loginform.gif);
+    background-repeat:no-repeat;
+    margin:0 auto;
+    margin-top:100px;
+}
+
+#banner{
+    width:797px;
+    margin:0 auto;
+
+}
+
+#logo{
+    background-image:url(../img/imsys.jpg);
+    background-repeat:no-repeat;
+    width:291px;
+    height:100px;
+}
+
+#texto{
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #444444;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+
+}
+
+#usuario{
+    margin-top:139px;
+    margin-left:50px;
+    width:254px;
+    height:43px;
+    font: 15px 'Segoe UI',Arial,sans-serif;
+    border: none;
+    background:none;
+    position: absolute;
+    text-indent: 8px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    color: #000;
+    outline:none;
+
+}
+
+#clave{
+    margin-top:225px;
+    margin-left:50px;
+    width:254px;
+    height:43px;
+    font: 15px 'Segoe UI',Arial,sans-serif;
+    border: none;
+    background:none;
+    position: absolute;
+    text-indent: 8px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    color: #000;
+    outline:none;
+
+}
+
+#ingresar{
+    background-image:url(../img/login1.gif);
+    margin-top:353px;
+    margin-left:215px;
+    width:96px;
+    height:34px;
+    cursor:pointer;
+    border-radius:6px;
+    box-shadow:0 1px 1px #888;
+    border:none;
+    font:14px/36px 'Segoe UI Light','Segoe UI',Arial,sans-serif;
+
+
+    /*
+    background-image: linear-gradient(bottom, rgb(80,102,127) 50%, rgb(87,109,136) 50%, rgb(106,129,155) 100%);
+    background-image: -o-linear-gradient(bottom, rgb(80,102,127) 50%, rgb(87,109,136) 50%, rgb(106,129,155) 100%);
+    background-image: -moz-linear-gradient(bottom, rgb(80,102,127) 50%, rgb(87,109,136) 50%, rgb(106,129,155) 100%);
+    background-image: -webkit-linear-gradient(bottom, rgb(80,102,127) 50%, rgb(87,109,136) 50%, rgb(106,129,155) 100%);
+    background-image: -ms-linear-gradient(bottom, rgb(80,102,127) 50%, rgb(87,109,136) 50%, rgb(106,129,155) 100%);
+    
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0.5, rgb(80,102,127)),
+            color-stop(0.5, rgb(87,109,136)),
+            color-stop(1, rgb(106,129,155))
+    );*/
+}
+
+input[type=submit]:hover{
+    opacity:1;
+}

@@ -1,0 +1,356 @@
+body {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    color: #444444;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+}
+
+a:hover {
+    color: blue;
+}
+
+a:visited {
+    color: blue;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+table {
+    /*background-color: white;*/
+    background:#FFFFFF;
+}
+
+thead {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    background-color: #290A93;
+}
+
+tbody {
+    color: #444444;
+}
+
+td {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+}
+
+fieldset {
+    border: 1px solid #999;
+    padding: 4px;
+}
+
+legend {
+    padding: 1px 4px;
+    border-color: #999 #ccc #ccc #999;
+    border-style: solid;
+    border-width: 1px;
+    background: #eee;
+    font-weight: bold;
+    color: #290A93;
+    font-size: 12px;
+}
+
+.FormBox {
+    background-color: #f3f3f3;
+}
+
+.ToolBar {
+    background-color:#CCCCCC;
+    border:#000033 solid 1px;
+    padding:2px;
+}
+
+.MessageBox {
+    color: red;
+    font-weight: bold;
+    border: red solid 1px;
+    background-color :#FFFFD9;
+    padding: 3px;
+}
+
+.MensajeError {
+    color: red;
+    font-weight: bold;
+    border: red solid 1px;
+    background-color: #FFFFD9;
+    padding: 3px;
+}
+
+.MensajeInformacion {
+    color: green;
+    font-weight: bold;
+    border: green solid 1px;
+    background-color: #FFFFD9;
+    padding: 3px;
+}
+
+
+.OkBox {
+    color:green;
+    font-weight: bold;
+    border:green solid 1px;
+    background-color:#98FB98;
+    padding:3px;
+}
+
+.ChartButton {
+    background: url(../img/icons/chart.gif) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.GearButton {
+    background: url(../img/icons/page_white_gear.png) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.CleanButton {
+    background: url(../img/icons/white.jpg) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.CalendarButton {
+    background: url(../img/icons/Calendario.png) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.SearchButton {
+    background: url(../img/icons/bin-2.jpg) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.SaveButton {
+    background: url(../img/icons/disk.gif) no-repeat;
+    width:23px;
+    height:23px;
+}
+.ClearButton {
+    background: url(../img/icons/white.png) no-repeat;
+    width:23px;
+    height:23px;
+}
+.GraficoButton {
+    background: url(../img/icons/reporte.png) no-repeat;
+    width:23px;
+    height:23px;
+}
+.UpdateButton {
+    background: url(../img/icons/disk.gif) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.ExportButton {
+    background: url(../img/icons/report_go.png) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.DetalleButton {
+    background: url(../img/icons/report.gif) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.GaveButton {
+    background: url(../img/icons/add.gif) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.DeleteButton {
+    background: url(../img/icons/cross.gif) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.BorrarButton {
+    background: url(../img/icons/wand.png) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.DeleteAllButton {
+    background: url(../img/icons/wand.png) no-repeat;
+    width:23px;
+    height:23px;
+}
+
+.PrintButton {
+    background: url(../img/icons/printer.gif) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.ReportButton {
+    background: url(../img/icons/excel.gif) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.ExitButton {
+    background: url(../img/icons/door_out.gif) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.IniciarButton {
+    background: url(../img/icons/tick.gif) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.NoIniciarButton {
+    background: url(../img/icons/delete.gif) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.TerminarButton {
+    background: url(../img/icons/cross.gif) no-repeat;
+    width: 23px;
+    height:23px;
+}
+
+.number{
+    text-align: right;
+    width: 82px;
+}
+
+.select {
+    background: white;
+    color: #444444;
+    border: 1px solid #F8B600;
+    font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    height: 20px;
+}
+
+.seleccion{
+    width: 85px;
+}
+
+.seleccionmedium{
+    width: 146px;
+}
+
+.textarea {
+    background: white;
+    color: #444444;
+    border: 1px solid #F8B600;
+    font-family:"lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+    height:90px;
+    width:300px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.button {
+    color: #ffffff;
+    font-family: "Verdana";
+    background: url(../img/system/bg1.jpg);
+    cursor: pointer;
+    height: 25px;
+}
+
+.input {
+    color: #444444;
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 11px;
+}
+
+.Texto {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    font-size: 100px;
+    color: #444444;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+}
+
+.TextBold{font-weight:bold;}
+.TextItalic{font-style:italic;}
+.TextNormal{font-weight:normal;font-style:normal;white-space:normal;text-transform:none;letter-spacing:normal;}
+.TextHighlight{color:#F07522;font-weight:bold;}
+
+.disabled {
+	background-color: #CCCCCC;
+}
+
+.processlate
+{
+    background-color: #FF0000;
+    text-align: center;
+    height: 50;
+}
+
+.processontime
+{
+    background-color: #FFFF00;
+    text-align: center;
+    height: 50;
+}
+
+.noinitlate
+{
+    background-color: #FFA500;
+    text-align: center;
+    height: 50;
+}
+
+.noinitontime
+{
+    background-color: #FFFFFF;
+    text-align: center;
+    height: 50;
+}
+
+.finishontime
+{
+    background-color: #00cc99;
+    text-align: center;
+    height: 50;
+}
+
+.finishlate
+{
+    background-color: #999999;
+    text-align: center;
+    height: 50;
+}
+
+.normaldiv
+{
+    width: 390px;
+    margin: 100px auto;
+    text-align: left;
+}
+
+.space
+{
+  margin-right: 2px;
+  
+}

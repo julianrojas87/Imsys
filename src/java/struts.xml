@@ -1,0 +1,18 @@
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="false" />
+    <package name="imsys" extends="struts-default">
+        <action name="SingIn" class="com.imsys.admin.struts.action.SingInAction" method="singin">
+            <result name="success">main.jsp</result>
+            <result name="input">index.jsp</result>
+        </action>
+        <action name="SingOut" class="com.imsys.admin.struts.action.SingInAction" method="singout">
+            <result name="success">index.jsp</result>
+        </action>
+         <action name="VerMedidores" class="com.imsys.admin.struts.action.MedidoresAction" method="display">
+            <result name="success">index.jsp</result>
+        </action>
+    </package>
+</struts>
