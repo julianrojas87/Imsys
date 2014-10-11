@@ -6,12 +6,15 @@
 package com.imsys.admin.dao.control;
 
 import com.imsys.admin.dao.db.BitacoraDao;
+import com.imsys.admin.dao.db.LecturaDao;
 import com.imsys.admin.dao.db.UsuarioDao;
 import com.imsys.admin.dao.entity.Bitacora;
+import com.imsys.admin.dao.entity.Lectura;
 import com.imsys.admin.dao.entity.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,15 +27,19 @@ public class AdminControl {
 
     private Usuario u;
     private Bitacora b;
+    private Lectura l;
     private UsuarioDao uDao;
     private BitacoraDao bDao;
+    private LecturaDao lDao;
     private Connection cx;
 
     public AdminControl() {
         u = new Usuario();
         b= new Bitacora();
+        l = new Lectura();
         uDao = new UsuarioDao();
         bDao = new BitacoraDao();
+        lDao = new LecturaDao();
     }
     
     public Usuario validateLogin(String user, String pass){
@@ -76,6 +83,17 @@ public class AdminControl {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return u;
+    }
+    
+    public ArrayList<Lectura> getLecturas(){
+        getConnection();
+        ArrayList<Lectura> lecturas = new ArrayList();
+        try {
+            lecturas = lDao.listAll(cx);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lecturas;
     }
 
     private void getConnection() {

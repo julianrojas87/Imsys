@@ -40,6 +40,7 @@ public class SingInAction extends ActionSupport implements ServletRequestAware{
                 } else{
                     session.setAttribute("username", getUsername());
                     session.setAttribute("userObject", u);
+                    session.setAttribute("mainopt", "home");
                     ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] ingresó al sistema.", u.getVccoduser(), "Main/SingIn");
                     return SUCCESS;
                 }
@@ -59,6 +60,11 @@ public class SingInAction extends ActionSupport implements ServletRequestAware{
             Usuario u = ac.getUserbyName(name);
             ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] salió del sistema.", u.getVccoduser(), "Main/SingOut");
         }
+        return SUCCESS;
+    }
+    
+    public String goHome(){
+        session.setAttribute("mainopt", "home");
         return SUCCESS;
     }
 

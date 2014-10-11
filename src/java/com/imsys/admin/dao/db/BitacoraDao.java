@@ -9,7 +9,6 @@ import com.imsys.admin.dao.entity.Bitacora;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *

@@ -47,7 +47,7 @@
                 <td align="left" width="200">
                     <div id='cssmenu'>
                         <ul>
-                            <li><a href='#'><span>Home</span></a></li>
+                            <li><a href='/imsys/GoHome'><span>Home</span></a></li>
                             <li class='has-sub'><a href='#'><span>Archivos</span></a>
                                 <ul>
                                     <li><a href="#"><span>Setup Default</span></a>
@@ -62,7 +62,7 @@
                             </li>
                             <li class='has-sub'><a href='#'><span>Consultas</span></a>
                                 <ul>
-                                    <li><a href="#"><span>Consulta de Lecturas</span></a>
+                                    <li><a href="/imsys/VerLecturas"><span>Consulta de Lecturas</span></a>
                                     <li><a href="#"><span>Consulta de Eventos</span></a>
                                     <li><a href="#"><span>Consulta de Tipos de Eventos</span></a>
                                     <li><a href="#"><span>Consulta de Usuarios</span></a>
@@ -79,11 +79,18 @@
                     </div>
                 </td>
                 <td width="797px">
-                    lksjhdflsk
                     <%
-                    
+                    String opt = (String) session.getAttribute("mainopt");
+                    if(opt.equals("home")){
                     %>
-                    <%@include file="/home.jsp"%>
+                        <%@include file="/home.jsp"%>
+                    <%
+                    } else if(opt.equals("lecturas")){
+                    %>
+                        <%@include file="/lecturas.jsp"%>
+                    <%
+                    }
+                    %>
                 </td>
                 <td></td>
             </tr>
