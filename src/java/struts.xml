@@ -17,6 +17,15 @@
         <action name="VerLecturas" class="com.imsys.admin.struts.action.LecturasAction" method="getLecturas">
             <result name="success">main.jsp</result>
         </action>
+        <action name="DisplayLecN" class="com.imsys.admin.struts.action.LecturasAction" method="displayN">
+            <result name="success">main.jsp</result>
+        </action>
+        <action name="SearchLecs" class="com.imsys.admin.struts.action.LecturasAction" method="searchLecturas">
+            <result name="success">main.jsp</result>
+        </action>
+        <action name="DisplaySearchLecN" class="com.imsys.admin.struts.action.LecturasAction" method="displaySearchN">
+            <result name="success">main.jsp</result>
+        </action>
          <action name="VerMedidores" class="com.imsys.admin.struts.action.MedidoresAction" method="display">
             <result name="success">index.jsp</result>
         </action>

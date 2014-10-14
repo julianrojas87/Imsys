@@ -89,6 +89,10 @@
                     %>
                         <%@include file="/lecturas.jsp"%>
                     <%
+                    } else if(opt.equals("searchLecturas")){
+                    %>
+                        <%@include file="/searchlecs.jsp"%>
+                    <%
                     }
                     %>
                 </td>

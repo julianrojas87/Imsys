@@ -63,7 +63,6 @@ public class AdminControl {
         Calendar cal = Calendar.getInstance();
         String date = cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR)
                 +"--"+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+":"+cal.get(Calendar.SECOND);
-        System.out.println("Date: "+date);
         try {
             b.setTsfecha(date);
             b.setVcoperacion(operation);
@@ -93,6 +92,34 @@ public class AdminControl {
         } catch (SQLException ex) {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return lecturas;
+    }
+    
+    public ArrayList<Lectura> getLecturaBy(String parameter, String value){
+        getConnection();
+        ArrayList<Lectura> lecturas = new ArrayList();
+        if(parameter.equals("fecha")){
+            try{
+                lecturas = lDao.getByFecha(cx, value);
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        if(parameter.equals("serie")){
+            try{
+                lecturas = lDao.getBySerie(cx, value);
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        if(parameter.equals("idmedidor")){
+            try{
+                lecturas = lDao.getById(cx, value);
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        
         return lecturas;
     }
 

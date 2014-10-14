@@ -1,6 +1,6 @@
 <%-- 
-    Document   : lecturas
-    Created on : Oct 11, 2014, 5:11:33 PM
+    Document   : searchlecs
+    Created on : Oct 14, 2014, 3:02:29 PM
     Author     : julian
 --%>
 
@@ -11,8 +11,7 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <%
-    List<Lectura> displecs = (List<Lectura>) session.getAttribute("lecturas");
-    session.removeAttribute("lecturas");
+    List<Lectura> displecs = (List<Lectura>) session.getAttribute("displecs");
     int total = (int) session.getAttribute("totallecs");
     int numBotones = (total / 10) + 1;
     int actuallec = (int) session.getAttribute("actuallec");
@@ -56,7 +55,7 @@
                             <div id="paging">
                                 <ul>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span>Previous</span>
                                             <%int prev = actuallec - 1;%>
                                             <s:param name="btnopt"><%=prev%></s:param>
@@ -66,19 +65,19 @@
                                         if (numBotones > 10) {
                                     %>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span>1</span>
                                             <s:param name="btnopt">1</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span>2</span>
                                             <s:param name="btnopt">2</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span>3</span>
                                             <s:param name="btnopt">3</s:param>
                                         </s:a>
@@ -87,19 +86,19 @@
                                         ...
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span><%=numBotones - 2%></span>
                                             <s:param name="btnopt"><%=numBotones - 2%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span><%=numBotones - 1%></span>
                                             <s:param name="btnopt"><%=numBotones - 1%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span><%=numBotones%></span>
                                             <s:param name="btnopt"><%=numBotones%></s:param>
                                         </s:a>
@@ -110,7 +109,7 @@
                                             int num = i + 1;
                                     %>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span><%=num%></span>
                                             <s:param name="btnopt"><%=num%></s:param>
                                         </s:a>
@@ -120,7 +119,7 @@
                                         }
                                     %>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchLecN">
                                             <span>Next</span>
                                             <%int next = actuallec + 1;%>
                                             <s:param name="btnopt"><%=next%></s:param>
@@ -176,3 +175,4 @@
         </div>
     </body>
 </html>
+

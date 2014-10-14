@@ -58,9 +58,132 @@ public class LecturaDao {
                 stm.close();
             }
         }
-
         return results;
-
     }
 
+    public ArrayList<Lectura> getById(Connection c, String id) throws SQLException {
+        String sql = "SELECT * FROM MOV_LECTURAS WHERE (VCIDMEDIDOR = ? ) ";
+        ArrayList<Lectura> results = new ArrayList();
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        
+        try{
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1, id);
+            result = stmt.executeQuery();
+            
+            while (result.next()) {
+                Lectura lec = new Lectura();
+                lec.setTsfecha(result.getString("TSFECHA"));
+                lec.setVcserie(result.getString("VCSERIE"));
+                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcvoltaje(result.getString("VCVOLTAJE"));
+                lec.setVccorriente(result.getString("VCCORRIENTE"));
+                lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
+                lec.setVcpotreactiva(result.getString("VCPOTREACTIVA"));
+                lec.setVcpotaparente(result.getString("VCPOTAPARENTE"));
+                lec.setVcfactorpot(result.getString("VCFACTORPOT"));
+                lec.setVceneactiva(result.getString("VCENEACTIVA"));
+                lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setLenviado(result.getString("LENVIADO"));
+
+                results.add(lec);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturaDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            c.close();
+            if (result != null) {
+                result.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return results;
+    }
+    
+    public ArrayList<Lectura> getBySerie(Connection c, String serie) throws SQLException {
+        String sql = "SELECT * FROM MOV_LECTURAS WHERE (VCSERIE = ? ) ";
+        ArrayList<Lectura> results = new ArrayList();
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        
+        try{
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1, serie);
+            result = stmt.executeQuery();
+            
+            while (result.next()) {
+                Lectura lec = new Lectura();
+                lec.setTsfecha(result.getString("TSFECHA"));
+                lec.setVcserie(result.getString("VCSERIE"));
+                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcvoltaje(result.getString("VCVOLTAJE"));
+                lec.setVccorriente(result.getString("VCCORRIENTE"));
+                lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
+                lec.setVcpotreactiva(result.getString("VCPOTREACTIVA"));
+                lec.setVcpotaparente(result.getString("VCPOTAPARENTE"));
+                lec.setVcfactorpot(result.getString("VCFACTORPOT"));
+                lec.setVceneactiva(result.getString("VCENEACTIVA"));
+                lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setLenviado(result.getString("LENVIADO"));
+
+                results.add(lec);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturaDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            c.close();
+            if (result != null) {
+                result.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return results;
+    }
+    
+    public ArrayList<Lectura> getByFecha(Connection c, String fecha) throws SQLException {
+        String sql = "SELECT * FROM MOV_LECTURAS WHERE (TSFECHA = ? ) ";
+        ArrayList<Lectura> results = new ArrayList();
+        PreparedStatement stmt = null;
+        ResultSet result = null;
+        
+        try{
+            stmt = c.prepareStatement(sql);
+            stmt.setString(1, fecha);
+            result = stmt.executeQuery();
+            
+            while (result.next()) {
+                Lectura lec = new Lectura();
+                lec.setTsfecha(result.getString("TSFECHA"));
+                lec.setVcserie(result.getString("VCSERIE"));
+                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcvoltaje(result.getString("VCVOLTAJE"));
+                lec.setVccorriente(result.getString("VCCORRIENTE"));
+                lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
+                lec.setVcpotreactiva(result.getString("VCPOTREACTIVA"));
+                lec.setVcpotaparente(result.getString("VCPOTAPARENTE"));
+                lec.setVcfactorpot(result.getString("VCFACTORPOT"));
+                lec.setVceneactiva(result.getString("VCENEACTIVA"));
+                lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setLenviado(result.getString("LENVIADO"));
+
+                results.add(lec);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturaDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            c.close();
+            if (result != null) {
+                result.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return results;
+    }
 }
