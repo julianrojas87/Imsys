@@ -6,9 +6,13 @@
 package com.imsys.admin.dao.control;
 
 import com.imsys.admin.dao.db.BitacoraDao;
+import com.imsys.admin.dao.db.EventoCajaDao;
+import com.imsys.admin.dao.db.EventoMedidorDao;
 import com.imsys.admin.dao.db.LecturaDao;
 import com.imsys.admin.dao.db.UsuarioDao;
 import com.imsys.admin.dao.entity.Bitacora;
+import com.imsys.admin.dao.entity.EventoCaja;
+import com.imsys.admin.dao.entity.EventoMedidor;
 import com.imsys.admin.dao.entity.Lectura;
 import com.imsys.admin.dao.entity.Usuario;
 import java.sql.Connection;
@@ -24,27 +28,14 @@ import java.util.logging.Logger;
  * @author julian
  */
 public class AdminControl {
-
-    private Usuario u;
-    private Bitacora b;
-    private Lectura l;
-    private UsuarioDao uDao;
-    private BitacoraDao bDao;
-    private LecturaDao lDao;
+    
     private Connection cx;
-
-    public AdminControl() {
-        u = new Usuario();
-        b= new Bitacora();
-        l = new Lectura();
-        uDao = new UsuarioDao();
-        bDao = new BitacoraDao();
-        lDao = new LecturaDao();
-    }
     
     public Usuario validateLogin(String user, String pass){
         getConnection();
-        Usuario us = null;
+        Usuario u = new Usuario();
+        Usuario us = new Usuario();
+        UsuarioDao uDao = new UsuarioDao();
         try {
             u = uDao.loadbyName(cx, user);
             if(u != null){
@@ -60,6 +51,8 @@ public class AdminControl {
     
     public void addBitacoraEntry(String operation, String usercode, String route){
         getConnection();
+        Bitacora b = new Bitacora();
+        BitacoraDao bDao = new BitacoraDao();
         Calendar cal = Calendar.getInstance();
         String date = cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR)
                 +"--"+cal.get(Calendar.HOUR_OF_DAY)+":"+cal.get(Calendar.MINUTE)+":"+cal.get(Calendar.SECOND);
@@ -76,6 +69,8 @@ public class AdminControl {
     
     public Usuario getUserbyName(String name){
         getConnection();
+        Usuario u = new Usuario();
+        UsuarioDao uDao = new UsuarioDao();
         try {
             u = uDao.loadbyName(cx, name);
         } catch (SQLException ex) {
@@ -87,6 +82,7 @@ public class AdminControl {
     public ArrayList<Lectura> getLecturas(){
         getConnection();
         ArrayList<Lectura> lecturas = new ArrayList();
+        LecturaDao lDao = new LecturaDao();
         try {
             lecturas = lDao.listAll(cx);
         } catch (SQLException ex) {
@@ -98,6 +94,7 @@ public class AdminControl {
     public ArrayList<Lectura> getLecturaBy(String parameter, String value){
         getConnection();
         ArrayList<Lectura> lecturas = new ArrayList();
+        LecturaDao lDao = new LecturaDao();
         if(parameter.equals("fecha")){
             try{
                 lecturas = lDao.getByFecha(cx, value);
@@ -121,6 +118,81 @@ public class AdminControl {
         }
         
         return lecturas;
+    }
+    
+     public ArrayList<EventoCaja> getEventc(){
+        getConnection();
+        ArrayList<EventoCaja> events = new ArrayList();
+        EventoCajaDao ecDao = new EventoCajaDao();
+        try {
+            events = ecDao.listAll(cx);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return events;
+    }
+     
+    public ArrayList<EventoMedidor> getEventm(){
+        getConnection();
+        ArrayList<EventoMedidor> events = new ArrayList();
+        EventoMedidorDao emDao = new EventoMedidorDao();
+        try {
+            events = emDao.listAll(cx);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return events;
+    }
+    
+    public ArrayList<EventoCaja> getEventCBy(String parameter, String value){
+        getConnection();
+        ArrayList<EventoCaja> eventsc = new ArrayList();
+        EventoCajaDao ecDao = new EventoCajaDao();
+        if(parameter.equals("fecha")){
+            try{
+                eventsc = ecDao.getByFecha(cx, value);
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        if(parameter.equals("codigo")){
+            try{
+                eventsc = ecDao.getByCodigo(cx, Integer.parseInt(value));
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        
+        return eventsc;
+    }
+    
+    public ArrayList<EventoMedidor> getEventMBy(String parameter, String value){
+        getConnection();
+        ArrayList<EventoMedidor> eventsm = new ArrayList();
+        EventoMedidorDao emDao = new EventoMedidorDao();
+        if(parameter.equals("fecha")){
+            try{
+                eventsm = emDao.getByFecha(cx, value);
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        if(parameter.equals("codigo")){
+            try{
+                eventsm = emDao.getByCodigo(cx, Integer.parseInt(value));
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        if(parameter.equals("serie")){
+            try{
+                eventsm = emDao.getBySerie(cx, value);
+            } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+            }   
+        }
+        
+        return eventsm;
     }
 
     private void getConnection() {

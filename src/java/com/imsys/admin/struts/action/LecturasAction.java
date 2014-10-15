@@ -106,7 +106,6 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
         if (this.getDate().length() > 0) {
             inputs = true;
             if (displecs.size() > 0) {
-                System.out.println("Entro a buscar por fecha desps de una busqueda anterior!!");
                 String reformatDate = this.getDate().split("-")[2] + "/"
                         + this.getDate().split("-")[1] + "/" + this.getDate().split("-")[0];
                 ArrayList<Lectura> temp1 = new ArrayList();
@@ -117,7 +116,6 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 }
                 displecs = temp1;
             } else {
-                System.out.println("Entro a buscar por fecha!!");
                 String reformatDate = this.getDate().split("-")[2] + "/"
                         + this.getDate().split("-")[1] + "/" + this.getDate().split("-")[0];
                 displecs = ac.getLecturaBy("fecha", reformatDate);

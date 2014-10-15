@@ -1,21 +1,19 @@
 <%-- 
-    Document   : lecturas
-    Created on : Oct 11, 2014, 5:11:33 PM
+    Document   : searcheventsm
+    Created on : Oct 15, 2014, 10:18:24 AM
     Author     : julian
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="com.imsys.admin.dao.entity.Lectura"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.imsys.admin.dao.entity.EventoMedidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%
-    List<Lectura> displecs = (List<Lectura>) session.getAttribute("lecturas");
-    int total = (int) session.getAttribute("totallecs");
+    List<EventoMedidor> dispeventsm = (List<EventoMedidor>) session.getAttribute("dispeventsm");
+    int total = (int) session.getAttribute("totalevem");
     int numBotones = (total / 10) + 1;
-    int actuallec = (int) session.getAttribute("actuallec");
+    int actualevem = (int) session.getAttribute("actualevem");
 %>
 <html>
     <head>
@@ -27,13 +25,13 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="11">Consulta de Lecturas</th>
+                        <th colspan="3">Consulta de Eventos de Medidor</th>
                     </tr>
                     <tr>
-                        <td colspan="11">
-                            <s:form theme="simple" action="/SearchLecs">
+                        <td colspan="3">
+                            <s:form theme="simple" action="/SearchEventsM">
                                 Fecha: <s:textfield theme="simple" name="date" type="date"/>
-                                ID Medidor: <s:textfield theme="simple" name="idmedidor"/>
+                                C&oacute;digo Evento: <s:textfield theme="simple" name="code"/>
                                 Serial Medidor: <s:textfield theme="simple" name="serie"/>
                                 <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
                             </s:form>
@@ -41,27 +39,19 @@
                     </tr>
                     <tr>
                         <th>Fecha</th>
-                        <th>ID Medidor</th>
+                        <th>C&oacute;digo de Evento</th>
                         <th>Serial de Medidor</th>
-                        <th>Voltaje</th>
-                        <th>Corriente</th>
-                        <th>Potencia Activa</th>
-                        <th>Potencia Reactiva</th>
-                        <th>Potencia Aparente</th>
-                        <th>Factor Potencia</th>
-                        <th>Energ&iacute;a Activa</th>
-                        <th>Energ&iacute;a Reactiva</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="11">
+                        <td colspan="3">
                             <div id="paging">
                                 <ul>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span>Previous</span>
-                                            <%int prev = actuallec - 1;%>
+                                            <%int prev = actualevem - 1;%>
                                             <s:param name="btnopt"><%=prev%></s:param>
                                         </s:a>
                                     </li>
@@ -69,19 +59,19 @@
                                         if (numBotones > 10) {
                                     %>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span>1</span>
                                             <s:param name="btnopt">1</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span>2</span>
                                             <s:param name="btnopt">2</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span>3</span>
                                             <s:param name="btnopt">3</s:param>
                                         </s:a>
@@ -90,19 +80,19 @@
                                         ...
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span><%=numBotones - 2%></span>
                                             <s:param name="btnopt"><%=numBotones - 2%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span><%=numBotones - 1%></span>
                                             <s:param name="btnopt"><%=numBotones - 1%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span><%=numBotones%></span>
                                             <s:param name="btnopt"><%=numBotones%></s:param>
                                         </s:a>
@@ -113,7 +103,7 @@
                                             int num = i + 1;
                                     %>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span><%=num%></span>
                                             <s:param name="btnopt"><%=num%></s:param>
                                         </s:a>
@@ -123,9 +113,9 @@
                                         }
                                     %>
                                     <li>
-                                        <s:a action="/DisplayLecN">
+                                        <s:a action="/DisplaySearchEventMN">
                                             <span>Next</span>
-                                            <%int next = actuallec + 1;%>
+                                            <%int next = actualevem + 1;%>
                                             <s:param name="btnopt"><%=next%></s:param>
                                         </s:a>
                                     </li>
@@ -137,38 +127,22 @@
                 <tbody>
                     <%
                         int mod = 0;
-                        for (Lectura l : displecs) {
+                        for (EventoMedidor em : dispeventsm) {
                             mod++;
                             if (mod % 2 == 0) {
                     %>
                     <tr class="alt">
-                        <td><%=l.getTsfecha()%></td>
-                        <td><%=l.getVcidmedidor()%></td>
-                        <td><%=l.getVcserie()%></td>
-                        <td><%=l.getVcvoltaje()%></td>
-                        <td><%=l.getVccorriente()%></td>
-                        <td><%=l.getVcpotactiva()%></td>
-                        <td><%=l.getVcpotreactiva()%></td>
-                        <td><%=l.getVcpotaparente()%></td>
-                        <td><%=l.getVcfactorpot()%></td>
-                        <td><%=l.getVceneactiva()%></td>
-                        <td><%=l.getVcenereactiva()%></td>
+                        <td><%=em.getDfechaevemed()%></td>
+                        <td><%=em.getNcodtipoeve()%></td>
+                        <td><%=em.getVcserie()%></td>
                     </tr>
                     <%
                     } else {
                     %>
                     <tr>
-                        <td><%=l.getTsfecha()%></td>
-                        <td><%=l.getVcidmedidor()%></td>
-                        <td><%=l.getVcserie()%></td>
-                        <td><%=l.getVcvoltaje()%></td>
-                        <td><%=l.getVccorriente()%></td>
-                        <td><%=l.getVcpotactiva()%></td>
-                        <td><%=l.getVcpotreactiva()%></td>
-                        <td><%=l.getVcpotaparente()%></td>
-                        <td><%=l.getVcfactorpot()%></td>
-                        <td><%=l.getVceneactiva()%></td>
-                        <td><%=l.getVcenereactiva()%></td>
+                        <td><%=em.getDfechaevemed()%></td>
+                        <td><%=em.getNcodtipoeve()%></td>
+                        <td><%=em.getVcserie()%></td>
                     </tr>
                     <%
                             }
@@ -177,13 +151,5 @@
                 </tbody>
             </table>
         </div>
-        <c:if test="${msj!=null}">
-            <script>
-                self.alert("<%=session.getAttribute("msj")%>");
-                <%
-                    session.setAttribute("msj", null);
-                %>
-            </script>
-        </c:if>
     </body>
 </html>

@@ -26,6 +26,9 @@
             <table>
                 <thead>
                     <tr>
+                        <th colspan="11">Consulta de Lecturas</th>
+                    </tr>
+                    <tr>
                         <td colspan="11">
                             <s:form theme="simple" action="/SearchLecs">
                                 Fecha: <s:textfield theme="simple" name="date" type="date"/>

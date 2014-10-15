@@ -21,10 +21,6 @@
         <link rel="stylesheet" type="text/css" href="resources/css/simex-1.css"/>
         <link rel="stylesheet" href="resources/css/Menu.css">
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-
-        <!--[if lte IE 6]>
-             <link rel="stylesheet" type="text/css" href="resources/css/styleIE6.css"/>
-        <![endif]-->
     </head>
     <body>
         <div id="banner">
@@ -63,7 +59,11 @@
                             <li class='has-sub'><a href='#'><span>Consultas</span></a>
                                 <ul>
                                     <li><a href="/imsys/VerLecturas"><span>Consulta de Lecturas</span></a>
-                                    <li><a href="#"><span>Consulta de Eventos</span></a>
+                                    <li class="has-sub"><a href="#"><span>Consulta de Eventos</span></a>
+                                        <ul>
+                                            <li><a href="/imsys/VerEventosCaja"><span>Eventos de Caja</span></a>
+                                            <li><a href="/imsys/VerEventosMedidor"><span>Eventos de Medidores</span></a>
+                                        </ul>
                                     <li><a href="#"><span>Consulta de Tipos de Eventos</span></a>
                                     <li><a href="#"><span>Consulta de Usuarios</span></a>
                                     <li><a href="#"><span>Consulta de Roles</span></a>
@@ -92,6 +92,22 @@
                     } else if(opt.equals("searchLecturas")){
                     %>
                         <%@include file="/searchlecs.jsp"%>
+                    <%
+                    } else if(opt.equals("eventosCaja")){
+                    %>
+                        <%@include file="/eventosCaja.jsp"%>
+                    <%
+                    } else if(opt.equals("eventosMedidor")){
+                    %>
+                        <%@include file="/eventosMedidor.jsp"%>
+                    <%
+                    } else if(opt.equals("searchEventC")){
+                    %>
+                        <%@include file="/searcheventsc.jsp"%>
+                    <%
+                    } else if(opt.equals("searchEventM")){
+                    %>
+                        <%@include file="/searcheventsm.jsp"%>
                     <%
                     }
                     %>

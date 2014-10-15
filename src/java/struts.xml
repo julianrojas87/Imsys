@@ -57,6 +57,54 @@
             <result name="success">main.jsp</result>
         </action>
         
+        <action name="VerEventosCaja" class="com.imsys.admin.struts.action.EventosAction" method="getEventosCaja">
+             <interceptor-ref name="SessionValidationStack" />
+             <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="VerEventosMedidor" class="com.imsys.admin.struts.action.EventosAction" method="getEventosMedidor">
+             <interceptor-ref name="SessionValidationStack" />
+             <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayEventCN" class="com.imsys.admin.struts.action.EventosAction" method="displayEventsCN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayEventMN" class="com.imsys.admin.struts.action.EventosAction" method="displayEventsMN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchEventsC" class="com.imsys.admin.struts.action.EventosAction" method="searchEventsC">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchEventsM" class="com.imsys.admin.struts.action.EventosAction" method="searchEventsM">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchEventCN" class="com.imsys.admin.struts.action.EventosAction" method="displaySearchEveCN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchEventMN" class="com.imsys.admin.struts.action.EventosAction" method="displaySearchEveMN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
         <action name="VerMedidores" class="com.imsys.admin.struts.action.MedidoresAction" method="display">
             <result name="success">index.jsp</result>
         </action>
