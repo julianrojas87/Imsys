@@ -81,14 +81,15 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
     public String searchLecturas() {
         ArrayList<Lectura> displecs = new ArrayList();
         AdminControl ac = new AdminControl();
+        boolean inputs = false;
         
         if (this.getIdmedidor().length() > 0) {
+            inputs = true;
             displecs = ac.getLecturaBy("idmedidor", this.getIdmedidor());
-            System.out.println("Entro a buscar por medidores!!");
         }
         
         if (this.getSerie().length() > 0) {
-            System.out.println("Entro a buscar por serie desps de haber buscado por medidores!!");
+            inputs = true;
             if (displecs.size() > 0) {
                 ArrayList<Lectura> temp = new ArrayList();
                 for (Lectura l : displecs) {
@@ -98,12 +99,12 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 }
                 displecs = temp;
             } else {
-                System.out.println("Entro a buscar por medidores!!");
                 displecs = ac.getLecturaBy("serie", this.getSerie());
             }
         }
 
         if (this.getDate().length() > 0) {
+            inputs = true;
             if (displecs.size() > 0) {
                 System.out.println("Entro a buscar por fecha desps de una busqueda anterior!!");
                 String reformatDate = this.getDate().split("-")[2] + "/"
@@ -139,9 +140,13 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             session.setAttribute("actuallec", 1);
             session.setAttribute("mainopt", "searchLecturas");
             return SUCCESS;
-        } else {
-            session.setAttribute("mainopt", "searchLecturas");
-            session.setAttribute("totallecs", displecs.size());
+        } else if(inputs){
+            session.setAttribute("mainopt", "lecturas");
+            session.setAttribute("msj", "No existen resultados para esta busqueda");
+            return SUCCESS;
+        } else{
+            session.setAttribute("mainopt", "lecturas");
+            session.setAttribute("msj", "Ingrese por lo menos un parámetro de busqueda");
             return SUCCESS;
         }
 

@@ -4,30 +4,62 @@
 <struts>
     <constant name="struts.devMode" value="false" />
     <package name="imsys" extends="struts-default">
+        
+        <interceptors>
+            <interceptor name="SessionCheckInterceptor"  
+                         class="com.imsys.admin.struts.interceptor.SessionCheckInterceptor"/>
+            <interceptor-stack name="SessionValidationStack">
+                <interceptor-ref name="SessionCheckInterceptor" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack> 
+        </interceptors>
+        
+        <global-results>
+            <result name="sessionexpired">index.jsp</result>
+        </global-results>
+        
         <action name="GoHome" class="com.imsys.admin.struts.action.SingInAction" method="goHome">
+            <interceptor-ref name="SessionValidationStack" />
             <result name="success">main.jsp</result>
+            <result name="sessionexpired">index.jsp</result>
         </action>
+        
         <action name="SingIn" class="com.imsys.admin.struts.action.SingInAction" method="singin">
             <result name="success">main.jsp</result>
             <result name="input">index.jsp</result>
         </action>
+        
         <action name="SingOut" class="com.imsys.admin.struts.action.SingInAction" method="singout">
             <result name="success">index.jsp</result>
         </action>
+        
         <action name="VerLecturas" class="com.imsys.admin.struts.action.LecturasAction" method="getLecturas">
+             <interceptor-ref name="SessionValidationStack" />
+             <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
+        
         <action name="DisplayLecN" class="com.imsys.admin.struts.action.LecturasAction" method="displayN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
+        
         <action name="SearchLecs" class="com.imsys.admin.struts.action.LecturasAction" method="searchLecturas">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
+        
         <action name="DisplaySearchLecN" class="com.imsys.admin.struts.action.LecturasAction" method="displaySearchN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
-         <action name="VerMedidores" class="com.imsys.admin.struts.action.MedidoresAction" method="display">
+        
+        <action name="VerMedidores" class="com.imsys.admin.struts.action.MedidoresAction" method="display">
             <result name="success">index.jsp</result>
         </action>
+        
     </package>
 </struts>

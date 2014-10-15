@@ -9,10 +9,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%
     List<Lectura> displecs = (List<Lectura>) session.getAttribute("lecturas");
-    session.removeAttribute("lecturas");
     int total = (int) session.getAttribute("totallecs");
     int numBotones = (total / 10) + 1;
     int actuallec = (int) session.getAttribute("actuallec");
@@ -174,5 +174,13 @@
                 </tbody>
             </table>
         </div>
+        <c:if test="${msj!=null}">
+            <script>
+                self.alert("<%=session.getAttribute("msj")%>");
+                <%
+                    session.setAttribute("msj", null);
+                %>
+            </script>
+        </c:if>
     </body>
 </html>
