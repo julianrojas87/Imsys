@@ -35,6 +35,7 @@ public class EventoMedidorDao {
                 event.setDfechaevemed(result.getString("DFECHAEVEMED"));
                 event.setVcserie(result.getString("VCSERIE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {
@@ -67,6 +68,7 @@ public class EventoMedidorDao {
                 event.setDfechaevemed(result.getString("DFECHAEVEMED"));
                 event.setVcserie(result.getString("VCSERIE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {
@@ -99,6 +101,7 @@ public class EventoMedidorDao {
                 event.setDfechaevemed(result.getString("DFECHAEVEMED"));
                 event.setVcserie(result.getString("VCSERIE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {
@@ -131,6 +134,7 @@ public class EventoMedidorDao {
                 event.setDfechaevemed(result.getString("DFECHAEVEMED"));
                 event.setVcserie(result.getString("VCSERIE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {

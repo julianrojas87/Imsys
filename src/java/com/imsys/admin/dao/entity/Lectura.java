@@ -24,6 +24,8 @@ public class Lectura implements Serializable{
     private String vcfactorpot;
     private String vceneactiva;
     private String vcenereactiva;
+    private String vccalceneact;
+    private String vccalcenereact;
     private String lenviado;
 
     public Lectura(){}
@@ -122,5 +124,21 @@ public class Lectura implements Serializable{
 
     public void setLenviado(String lenviado) {
         this.lenviado = lenviado;
-    }   
+    }
+
+    public String getVccalceneact() {
+        return vccalceneact;
+    }
+
+    public void setVccalceneact(String vccalceneact) {
+        this.vccalceneact = vccalceneact;
+    }
+
+    public String getVccalcenereact() {
+        return vccalcenereact;
+    }
+
+    public void setVccalcenereact(String vccalcenereact) {
+        this.vccalcenereact = vccalcenereact;
+    }
 }

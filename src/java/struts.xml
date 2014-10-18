@@ -105,8 +105,100 @@
             <result name="success">main.jsp</result>
         </action>
         
-        <action name="VerMedidores" class="com.imsys.admin.struts.action.MedidoresAction" method="display">
-            <result name="success">index.jsp</result>
+        <action name="VerTipoEventos" class="com.imsys.admin.struts.action.EventosAction" method="getTipoEventos">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayTipoEventN" class="com.imsys.admin.struts.action.EventosAction" method="displayTipoEventN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchTipoEvents" class="com.imsys.admin.struts.action.EventosAction" method="searchTipoEvents">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchTipoEventN" class="com.imsys.admin.struts.action.EventosAction" method="displaySearchTipoEventN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="VerUsuarios" class="com.imsys.admin.struts.action.UsersAction" method="getUsuarios">
+             <interceptor-ref name="SessionValidationStack" />
+             <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayUserN" class="com.imsys.admin.struts.action.UsersAction" method="displayUserN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchUsers" class="com.imsys.admin.struts.action.UsersAction" method="searchUsers">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchUserN" class="com.imsys.admin.struts.action.UsersAction" method="displaySearchUserN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="VerRoles" class="com.imsys.admin.struts.action.UsersAction" method="getRoles">
+             <interceptor-ref name="SessionValidationStack" />
+             <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayRolN" class="com.imsys.admin.struts.action.UsersAction" method="displayRolN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchRoles" class="com.imsys.admin.struts.action.UsersAction" method="searchRoles">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchRolN" class="com.imsys.admin.struts.action.UsersAction" method="displaySearchRolN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="VerPoliticas" class="com.imsys.admin.struts.action.UsersAction" method="getPoliticas">
+             <interceptor-ref name="SessionValidationStack" />
+             <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayPoliticaN" class="com.imsys.admin.struts.action.UsersAction" method="displayPoliticaN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchPoliticas" class="com.imsys.admin.struts.action.UsersAction" method="searchPoliticas">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchPoliticaN" class="com.imsys.admin.struts.action.UsersAction" method="displaySearchPoliticaN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
         </action>
         
     </package>

@@ -15,6 +15,7 @@ public class EventoCaja implements Serializable{
     
     private String dfechaeve;
     private int ncodtipoeve;
+    private String vcdescripcion;
 
     public String getDfechaeve() {
         return dfechaeve;
@@ -31,4 +32,12 @@ public class EventoCaja implements Serializable{
     public void setNcodtipoeve(int ncodtipoeve) {
         this.ncodtipoeve = ncodtipoeve;
     }    
+
+    public String getVcdescripcion() {
+        return vcdescripcion;
+    }
+
+    public void setVcdescripcion(String vcdescripcion) {
+        this.vcdescripcion = vcdescripcion;
+    }
 }

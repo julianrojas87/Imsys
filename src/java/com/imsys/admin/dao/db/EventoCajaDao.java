@@ -34,6 +34,7 @@ public class EventoCajaDao {
                 EventoCaja event = new EventoCaja();
                 event.setDfechaeve(result.getString("DFECHAEVE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {
@@ -65,6 +66,7 @@ public class EventoCajaDao {
                 EventoCaja event = new EventoCaja();
                 event.setDfechaeve(result.getString("DFECHAEVE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {
@@ -96,6 +98,7 @@ public class EventoCajaDao {
                 EventoCaja event = new EventoCaja();
                 event.setDfechaeve(result.getString("DFECHAEVE"));
                 event.setNcodtipoeve(Integer.parseInt(result.getString("NCODTIPOEVE")));
+                event.setVcdescripcion(result.getString("VCDESCRIPCION"));
                 results.add(event);
             }
         } catch (SQLException ex) {

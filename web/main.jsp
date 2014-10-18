@@ -18,6 +18,7 @@
 <html>
     <head>
         <title>IMSYS WEB</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="resources/css/simex-1.css"/>
         <link rel="stylesheet" href="resources/css/Menu.css">
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -64,10 +65,10 @@
                                             <li><a href="/imsys/VerEventosCaja"><span>Eventos de Caja</span></a>
                                             <li><a href="/imsys/VerEventosMedidor"><span>Eventos de Medidores</span></a>
                                         </ul>
-                                    <li><a href="#"><span>Consulta de Tipos de Eventos</span></a>
-                                    <li><a href="#"><span>Consulta de Usuarios</span></a>
-                                    <li><a href="#"><span>Consulta de Roles</span></a>
-                                    <li><a href="#"><span>Consulta de Pol&iacute;ticas</span></a>
+                                    <li><a href="/imsys/VerTipoEventos"><span>Consulta de Tipos de Eventos</span></a>
+                                    <li><a href="/imsys/VerUsuarios"><span>Consulta de Usuarios</span></a>
+                                    <li><a href="/imsys/VerRoles"><span>Consulta de Roles</span></a>
+                                    <li><a href="/imsys/VerPoliticas"><span>Consulta de Pol&iacute;ticas</span></a>
                                 </ul>
                             </li>
                             <li class='has-sub'><a href='#'><span>Utilidades</span></a>
@@ -108,6 +109,38 @@
                     } else if(opt.equals("searchEventM")){
                     %>
                         <%@include file="/searcheventsm.jsp"%>
+                    <%
+                    } else if(opt.equals("tipoEventos")){
+                    %>
+                        <%@include file="/tipoeventos.jsp"%>
+                    <%
+                    } else if(opt.equals("searchTipoEventos")){
+                    %>
+                        <%@include file="/searchtipoeventos.jsp"%>
+                    <%
+                    } else if(opt.equals("usuarios")){
+                    %>
+                        <%@include file="/usuarios.jsp"%>
+                    <%
+                    } else if(opt.equals("searchUsers")){
+                    %>
+                        <%@include file="/searchusers.jsp"%>
+                    <%
+                    } else if(opt.equals("roles")){
+                    %>
+                        <%@include file="/roles.jsp"%>
+                    <%
+                    } else if(opt.equals("searchRoles")){
+                    %>
+                        <%@include file="/searchroles.jsp"%>
+                    <%
+                    } else if(opt.equals("politicas")){
+                    %>
+                        <%@include file="/politicas.jsp"%>
+                    <%
+                    } else if(opt.equals("searchPoliticas")){
+                    %>
+                        <%@include file="/searchpoliticas.jsp"%>
                     <%
                     }
                     %>

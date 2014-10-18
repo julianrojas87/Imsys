@@ -1,61 +1,59 @@
 <%-- 
-    Document   : searcheventsm
-    Created on : Oct 15, 2014, 10:18:24 AM
+    Document   : politicas
+    Created on : Oct 17, 2014, 4:38:29 PM
     Author     : julian
 --%>
 
+<%@page import="com.imsys.admin.dao.entity.Politica"%>
 <%@page import="java.util.List"%>
-<%@page import="com.imsys.admin.dao.entity.EventoMedidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="sj" uri="/struts-jquery-tags" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%
-    List<EventoMedidor> dispeventsm = (List<EventoMedidor>) session.getAttribute("dispeventsm");
-    int total = (int) session.getAttribute("totalevem");
+    List<Politica> displecs = (List<Politica>) session.getAttribute("politicas");
+    int total = (int) session.getAttribute("totallecs");
     int numBotones = (total / 10) + 1;
-    int actualevem = (int) session.getAttribute("actualevem");
+    int actuallec = (int) session.getAttribute("actuallec");
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="resources/css/Table.css">
-        <sj:head jquerytheme="cupertino"/>
     </head>
     <body>
         <div class="datagrid">
             <table>
                 <thead>
                     <tr>
-                        <th colspan="4">Consulta de Eventos de Medidor</th>
+                        <th colspan="6">Consulta de Pol&iacute;ticas</th>
                     </tr>
                     <tr>
-                        <td colspan="4">
-                            <s:form theme="simple" action="/SearchEventsM">
-                                Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="5" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
-                                Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="5" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
-                                C&oacute;digo Evento: <s:textfield theme="simple" name="code" size="5"/>
-                                Serial Medidor: <s:textfield theme="simple" name="serie" size="5"/>
+                        <td colspan="6">
+                            <s:form theme="simple" action="/SearchPoliticas">
+                                C&oacute;digo de Rutina: <s:textfield theme="simple" name="code"/>
                                 <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>
                     <tr>
-                        <th>Fecha</th>
-                        <th>C&oacute;digo de Evento</th>
-                        <th>Serial de Medidor</th>
-                        <th>Descripci&oacute;n</th>
+                        <th>C&oacute;digo de Rutina</th>
+                        <th>Opci&oacute;n</th>
+                        <th>Grabar</th>
+                        <th>Borrar</th>
+                        <th>Imprimir</th>
+                        <th>Simex</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="4">
+                        <td colspan="6">
                             <div id="paging">
                                 <ul>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticalN">
                                             <span>Previous</span>
-                                            <%int prev = actualevem - 1;%>
+                                            <%int prev = actuallec - 1;%>
                                             <s:param name="btnopt"><%=prev%></s:param>
                                         </s:a>
                                     </li>
@@ -63,19 +61,19 @@
                                         if (numBotones > 10) {
                                     %>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span>1</span>
                                             <s:param name="btnopt">1</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span>2</span>
                                             <s:param name="btnopt">2</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span>3</span>
                                             <s:param name="btnopt">3</s:param>
                                         </s:a>
@@ -84,19 +82,19 @@
                                         ...
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span><%=numBotones - 2%></span>
                                             <s:param name="btnopt"><%=numBotones - 2%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span><%=numBotones - 1%></span>
                                             <s:param name="btnopt"><%=numBotones - 1%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span><%=numBotones%></span>
                                             <s:param name="btnopt"><%=numBotones%></s:param>
                                         </s:a>
@@ -107,7 +105,7 @@
                                             int num = i + 1;
                                     %>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span><%=num%></span>
                                             <s:param name="btnopt"><%=num%></s:param>
                                         </s:a>
@@ -117,9 +115,9 @@
                                         }
                                     %>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplayPoliticaN">
                                             <span>Next</span>
-                                            <%int next = actualevem + 1;%>
+                                            <%int next = actuallec + 1;%>
                                             <s:param name="btnopt"><%=next%></s:param>
                                         </s:a>
                                     </li>
@@ -131,24 +129,28 @@
                 <tbody>
                     <%
                         int mod = 0;
-                        for (EventoMedidor em : dispeventsm) {
+                        for (Politica l : displecs) {
                             mod++;
                             if (mod % 2 == 0) {
                     %>
                     <tr class="alt">
-                        <td><%=em.getDfechaevemed()%></td>
-                        <td><%=em.getNcodtipoeve()%></td>
-                        <td><%=em.getVcserie()%></td>
-                        <td><%=em.getVcdescripcion()%></td>
+                        <td><%=l.getVccodrutina()%></td>
+                        <td><%=l.getLopcion()%></td>
+                        <td><%=l.getLgrabar()%></td>
+                        <td><%=l.getLborrar()%></td>
+                        <td><%=l.getLimprimir()%></td>
+                        <td><%=l.getLsimex()%></td>
                     </tr>
                     <%
                     } else {
                     %>
                     <tr>
-                        <td><%=em.getDfechaevemed()%></td>
-                        <td><%=em.getNcodtipoeve()%></td>
-                        <td><%=em.getVcserie()%></td>
-                        <td><%=em.getVcdescripcion()%></td>
+                        <td><%=l.getVccodrutina()%></td>
+                        <td><%=l.getLopcion()%></td>
+                        <td><%=l.getLgrabar()%></td>
+                        <td><%=l.getLborrar()%></td>
+                        <td><%=l.getLimprimir()%></td>
+                        <td><%=l.getLsimex()%></td>
                     </tr>
                     <%
                             }
@@ -157,5 +159,13 @@
                 </tbody>
             </table>
         </div>
+        <c:if test="${msj!=null}">
+            <script>
+                self.alert("<%=session.getAttribute("msj")%>");
+                <%
+                    session.setAttribute("msj", null);
+                %>
+            </script>
+        </c:if>
     </body>
 </html>

@@ -43,6 +43,8 @@ public class LecturaDao {
                 lec.setVcfactorpot(result.getString("VCFACTORPOT"));
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setVccalceneact(result.getString("VCCALCENEACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
                 lec.setLenviado(result.getString("LENVIADO"));
 
                 results.add(lec);
@@ -85,6 +87,8 @@ public class LecturaDao {
                 lec.setVcfactorpot(result.getString("VCFACTORPOT"));
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setVccalceneact(result.getString("VCCALCENEACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
                 lec.setLenviado(result.getString("LENVIADO"));
 
                 results.add(lec);
@@ -127,6 +131,8 @@ public class LecturaDao {
                 lec.setVcfactorpot(result.getString("VCFACTORPOT"));
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setVccalceneact(result.getString("VCCALCENEACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
                 lec.setLenviado(result.getString("LENVIADO"));
 
                 results.add(lec);
@@ -169,6 +175,8 @@ public class LecturaDao {
                 lec.setVcfactorpot(result.getString("VCFACTORPOT"));
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
+                lec.setVccalceneact(result.getString("VCCALCENEACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
                 lec.setLenviado(result.getString("LENVIADO"));
 
                 results.add(lec);

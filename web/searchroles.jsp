@@ -1,50 +1,45 @@
 <%-- 
-    Document   : searcheventsm
-    Created on : Oct 15, 2014, 10:18:24 AM
+    Document   : searchroles
+    Created on : Oct 17, 2014, 3:23:55 PM
     Author     : julian
 --%>
 
+<%@page import="com.imsys.admin.dao.entity.Rol"%>
 <%@page import="java.util.List"%>
-<%@page import="com.imsys.admin.dao.entity.EventoMedidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="sj" uri="/struts-jquery-tags" %>
 <!DOCTYPE html>
 <%
-    List<EventoMedidor> dispeventsm = (List<EventoMedidor>) session.getAttribute("dispeventsm");
-    int total = (int) session.getAttribute("totalevem");
+    List<Rol> displecs = (List<Rol>) session.getAttribute("roles");
+    int total = (int) session.getAttribute("totallecs");
     int numBotones = (total / 10) + 1;
-    int actualevem = (int) session.getAttribute("actualevem");
+    int actuallec = (int) session.getAttribute("actuallec");
 %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="resources/css/Table.css">
-        <sj:head jquerytheme="cupertino"/>
     </head>
     <body>
         <div class="datagrid">
             <table>
                 <thead>
                     <tr>
-                        <th colspan="4">Consulta de Eventos de Medidor</th>
+                        <th colspan="4">Consulta de Roles</th>
                     </tr>
                     <tr>
                         <td colspan="4">
-                            <s:form theme="simple" action="/SearchEventsM">
-                                Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="5" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
-                                Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="5" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
-                                C&oacute;digo Evento: <s:textfield theme="simple" name="code" size="5"/>
-                                Serial Medidor: <s:textfield theme="simple" name="serie" size="5"/>
+                            <s:form theme="simple" action="/SearchRoles">
+                                C&oacute;digo de Rol: <s:textfield theme="simple" name="code"/>
                                 <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>
                     <tr>
-                        <th>Fecha</th>
-                        <th>C&oacute;digo de Evento</th>
-                        <th>Serial de Medidor</th>
+                        <th>C&oacute;digo de Rol</th>
                         <th>Descripci&oacute;n</th>
+                        <th>Rlim. Usuario</th>
+                        <th>R. Operarion</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -53,9 +48,9 @@
                             <div id="paging">
                                 <ul>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span>Previous</span>
-                                            <%int prev = actualevem - 1;%>
+                                            <%int prev = actuallec - 1;%>
                                             <s:param name="btnopt"><%=prev%></s:param>
                                         </s:a>
                                     </li>
@@ -63,19 +58,19 @@
                                         if (numBotones > 10) {
                                     %>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span>1</span>
                                             <s:param name="btnopt">1</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span>2</span>
                                             <s:param name="btnopt">2</s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span>3</span>
                                             <s:param name="btnopt">3</s:param>
                                         </s:a>
@@ -84,19 +79,19 @@
                                         ...
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span><%=numBotones - 2%></span>
                                             <s:param name="btnopt"><%=numBotones - 2%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span><%=numBotones - 1%></span>
                                             <s:param name="btnopt"><%=numBotones - 1%></s:param>
                                         </s:a>
                                     </li>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span><%=numBotones%></span>
                                             <s:param name="btnopt"><%=numBotones%></s:param>
                                         </s:a>
@@ -107,7 +102,7 @@
                                             int num = i + 1;
                                     %>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span><%=num%></span>
                                             <s:param name="btnopt"><%=num%></s:param>
                                         </s:a>
@@ -117,9 +112,9 @@
                                         }
                                     %>
                                     <li>
-                                        <s:a action="/DisplaySearchEventMN">
+                                        <s:a action="/DisplaySearchRolN">
                                             <span>Next</span>
-                                            <%int next = actualevem + 1;%>
+                                            <%int next = actuallec + 1;%>
                                             <s:param name="btnopt"><%=next%></s:param>
                                         </s:a>
                                     </li>
@@ -131,24 +126,24 @@
                 <tbody>
                     <%
                         int mod = 0;
-                        for (EventoMedidor em : dispeventsm) {
+                        for (Rol l : displecs) {
                             mod++;
                             if (mod % 2 == 0) {
                     %>
                     <tr class="alt">
-                        <td><%=em.getDfechaevemed()%></td>
-                        <td><%=em.getNcodtipoeve()%></td>
-                        <td><%=em.getVcserie()%></td>
-                        <td><%=em.getVcdescripcion()%></td>
+                        <td><%=l.getNcodroll()%></td>
+                        <td><%=l.getVcdesroll()%></td>
+                        <td><%=l.getLrlimusuario()%></td>
+                        <td><%=l.getLroperario()%></td>
                     </tr>
                     <%
                     } else {
                     %>
                     <tr>
-                        <td><%=em.getDfechaevemed()%></td>
-                        <td><%=em.getNcodtipoeve()%></td>
-                        <td><%=em.getVcserie()%></td>
-                        <td><%=em.getVcdescripcion()%></td>
+                        <td><%=l.getNcodroll()%></td>
+                        <td><%=l.getVcdesroll()%></td>
+                        <td><%=l.getLrlimusuario()%></td>
+                        <td><%=l.getLroperario()%></td>
                     </tr>
                     <%
                             }
@@ -159,3 +154,4 @@
         </div>
     </body>
 </html>
+

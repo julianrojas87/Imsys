@@ -8,7 +8,10 @@ package com.imsys.admin.struts.action;
 import com.imsys.admin.dao.control.AdminControl;
 import com.imsys.admin.dao.entity.Lectura;
 import com.opensymphony.xwork2.ActionSupport;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,7 +25,8 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
 
     private HttpSession session;
     private String btnopt;
-    private String date;
+    private String dateini;
+    private String datefin;
     private String idmedidor;
     private String serie;
 
@@ -55,7 +59,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 opt--;
             }
             int lim = 11 * (opt - 1) - 1;
-            for (int i = lim; i < lim + 10; i++) {
+            for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
                 } catch (IndexOutOfBoundsException e) {
@@ -63,6 +67,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 }
             }
         } else {
+            opt = 1;
             if (lecs.size() > 10) {
                 displecs = lecs.subList(0, 10);
             } else {
@@ -78,16 +83,56 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
         return SUCCESS;
     }
 
-    public String searchLecturas() {
+    public String searchLecturas() throws ParseException {
         ArrayList<Lectura> displecs = new ArrayList();
         AdminControl ac = new AdminControl();
         boolean inputs = false;
-        
+
+        if (this.getDateini().length() > 0 && this.getDatefin().length() > 0) {
+            inputs = true;
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            Date ini = format.parse(this.getDateini());
+            Date fin = format.parse(this.getDatefin());
+            if (fin.after(ini) || fin.equals(ini)) {
+                ArrayList<Lectura> all = ac.getLecturas();
+                for (Lectura l : all) {
+                    Date ld = format.parse(l.getTsfecha());
+                    if ((ld.after(ini) || ld.equals(ini)) && (ld.before(fin) || ld.equals(fin))) {
+                        displecs.add(l);
+                    }
+                }
+            } else {
+                session.setAttribute("mainopt", "lecturas");
+                session.setAttribute("msj", "Especifique una Fecha Inicial "
+                        + "anterior a la Fecha Final para realizar la busqueda");
+                return SUCCESS;
+            }
+        } else {
+            if (this.getDateini().length() > 0
+                    || this.getDatefin().length() > 0) {
+                session.setAttribute("mainopt", "lecturas");
+                session.setAttribute("msj", "Ingrese tanto la Fecha Inicial "
+                        + "como la Fecha Final para realizar la busqueda");
+                return SUCCESS;
+            }
+        }
+
         if (this.getIdmedidor().length() > 0) {
             inputs = true;
-            displecs = ac.getLecturaBy("idmedidor", this.getIdmedidor());
+            if (displecs.size() > 0) {
+                ArrayList<Lectura> temp = new ArrayList();
+                for (Lectura l : displecs) {
+                    if (l.getVcidmedidor().equals(this.getIdmedidor())) {
+                        temp.add(l);
+                    }
+                }
+                displecs = temp;
+            } else {
+                inputs = true;
+                displecs = ac.getLecturaBy("idmedidor", this.getIdmedidor());
+            }
         }
-        
+
         if (this.getSerie().length() > 0) {
             inputs = true;
             if (displecs.size() > 0) {
@@ -103,32 +148,12 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             }
         }
 
-        if (this.getDate().length() > 0) {
-            inputs = true;
-            if (displecs.size() > 0) {
-                String reformatDate = this.getDate().split("-")[2] + "/"
-                        + this.getDate().split("-")[1] + "/" + this.getDate().split("-")[0];
-                ArrayList<Lectura> temp1 = new ArrayList();
-                for (Lectura l : displecs) {
-                    if (l.getTsfecha().equals(reformatDate)) {
-                        temp1.add(l);
-                    }
-                }
-                displecs = temp1;
-            } else {
-                String reformatDate = this.getDate().split("-")[2] + "/"
-                        + this.getDate().split("-")[1] + "/" + this.getDate().split("-")[0];
-                displecs = ac.getLecturaBy("fecha", reformatDate);
-                System.out.println("Tamaño de Displecs: "+displecs.size());
-            }
-        }
-        
         if (displecs.size() > 0) {
-            if(displecs.size() > 10){
+            if (displecs.size() > 10) {
                 session.setAttribute("displecs", displecs.subList(0, 10));
-            } else{
+            } else {
                 List<Lectura> temp = new ArrayList();
-                for(Lectura l : displecs){
+                for (Lectura l : displecs) {
                     temp.add(l);
                 }
                 session.setAttribute("displecs", temp);
@@ -138,11 +163,11 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             session.setAttribute("actuallec", 1);
             session.setAttribute("mainopt", "searchLecturas");
             return SUCCESS;
-        } else if(inputs){
+        } else if (inputs) {
             session.setAttribute("mainopt", "lecturas");
             session.setAttribute("msj", "No existen resultados para esta busqueda");
             return SUCCESS;
-        } else{
+        } else {
             session.setAttribute("mainopt", "lecturas");
             session.setAttribute("msj", "Ingrese por lo menos un parámetro de busqueda");
             return SUCCESS;
@@ -160,7 +185,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 opt--;
             }
             int lim = 11 * (opt - 1) - 1;
-            for (int i = lim; i < lim + 10; i++) {
+            for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
                 } catch (IndexOutOfBoundsException e) {
@@ -168,6 +193,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 }
             }
         } else {
+            opt = 1;
             if (lecs.size() > 10) {
                 displecs = lecs.subList(0, 10);
             } else {
@@ -191,12 +217,20 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
         this.btnopt = btnopt;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateini() {
+        return dateini;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateini(String dateini) {
+        this.dateini = dateini;
+    }
+
+    public String getDatefin() {
+        return datefin;
+    }
+
+    public void setDatefin(String datefin) {
+        this.datefin = datefin;
     }
 
     public String getIdmedidor() {

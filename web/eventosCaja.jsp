@@ -6,9 +6,9 @@
 
 <%@page import="com.imsys.admin.dao.entity.EventoCaja"%>
 <%@page import="java.util.List"%>
-<%@page import="com.imsys.admin.dao.entity.EventoMedidor"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="sj" uri="/struts-jquery-tags" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%
@@ -21,18 +21,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="resources/css/Table.css">
+        <sj:head jquerytheme="cupertino"/>
     </head>
     <body>
         <div class="datagrid">
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">Consulta de Eventos de Caja</th>
+                        <th colspan="3">Consulta de Eventos de Caja</th>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <s:form theme="simple" action="/SearchEventsC">
-                                Fecha: <s:textfield theme="simple" name="date" type="date"/>
+                                Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
+                                Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
                                 C&oacute;digo Evento: <s:textfield theme="simple" name="code"/>
                                 <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
                             </s:form>
@@ -41,11 +43,12 @@
                     <tr>
                         <th>Fecha</th>
                         <th>C&oacute;digo de Evento</th>
+                        <th>Descripci&oacute;n</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div id="paging">
                                 <ul>
                                     <li>
@@ -134,6 +137,7 @@
                     <tr class="alt">
                         <td><%=ec.getDfechaeve()%></td>
                         <td><%=ec.getNcodtipoeve()%></td>
+                        <td><%=ec.getVcdescripcion()%></td>
                     </tr>
                     <%
                     } else {
@@ -141,6 +145,7 @@
                     <tr>
                         <td><%=ec.getDfechaeve()%></td>
                         <td><%=ec.getNcodtipoeve()%></td>
+                        <td><%=ec.getVcdescripcion()%></td>
                     </tr>
                     <%
                             }
@@ -149,5 +154,13 @@
                 </tbody>
             </table>
         </div>
+        <c:if test="${msj!=null}">
+            <script>
+                self.alert("<%=session.getAttribute("msj")%>");
+                <%
+                    session.setAttribute("msj", null);
+                %>
+            </script>
+        </c:if>
     </body>
 </html>

@@ -9,6 +9,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="sj" uri="/struts-jquery-tags" %>
 <!DOCTYPE html>
 <%
     List<Lectura> displecs = (List<Lectura>) session.getAttribute("displecs");
@@ -20,20 +21,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="resources/css/Table.css">
+        <sj:head jquerytheme="cupertino"/>
     </head>
     <body>
         <div class="datagrid">
             <table>
                 <thead>
                     <tr>
-                        <th colspan="11">Consulta de Lecturas</th>
+                        <th colspan="13">Consulta de Lecturas</th>
                     </tr>
                     <tr>
-                        <td colspan="11">
+                        <td colspan="13">
                             <s:form theme="simple" action="/SearchLecs">
-                                Fecha: <s:textfield theme="simple" name="date" type="date"/>
-                                ID Medidor: <s:textfield theme="simple" name="idmedidor"/>
-                                Serie Medidor: <s:textfield theme="simple" name="serie"/>
+                                Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
+                                Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
+                                ID Medidor: <s:textfield theme="simple" name="idmedidor" size="10"/>
+                                Serial Medidor: <s:textfield theme="simple" name="serie" size="10"/>
                                 <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
@@ -50,11 +53,13 @@
                         <th>Factor Potencia</th>
                         <th>Energ&iacute;a Activa</th>
                         <th>Energ&iacute;a Reactiva</th>
+                        <th>Energ&iacute;a Activa Calculada</th>
+                        <th>Energ&iacute;a Reactiva Calculada</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="11">
+                        <td colspan="13">
                             <div id="paging">
                                 <ul>
                                     <li>
@@ -152,6 +157,8 @@
                         <td><%=l.getVcfactorpot()%></td>
                         <td><%=l.getVceneactiva()%></td>
                         <td><%=l.getVcenereactiva()%></td>
+                        <td><%=l.getVccalceneact()%></td>
+                        <td><%=l.getVccalcenereact()%></td>
                     </tr>
                     <%
                     } else {
@@ -168,6 +175,8 @@
                         <td><%=l.getVcfactorpot()%></td>
                         <td><%=l.getVceneactiva()%></td>
                         <td><%=l.getVcenereactiva()%></td>
+                        <td><%=l.getVccalceneact()%></td>
+                        <td><%=l.getVccalcenereact()%></td>
                     </tr>
                     <%
                             }
