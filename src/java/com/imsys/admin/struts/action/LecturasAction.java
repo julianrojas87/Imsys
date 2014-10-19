@@ -7,6 +7,7 @@ package com.imsys.admin.struts.action;
 
 import com.imsys.admin.dao.control.AdminControl;
 import com.imsys.admin.dao.entity.Lectura;
+import com.imsys.admin.dao.entity.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,8 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
         session.setAttribute("totallecs", lecs.size());
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "lecturas");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó las lecturas.", u.getVccoduser(), "Main/Consultas/Lecturas");
         return SUCCESS;
     }
 

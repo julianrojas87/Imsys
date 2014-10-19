@@ -53,7 +53,7 @@
                             </li>
                             <li class='has-sub'><a href='#'><span>Procesos</span></a>
                                 <ul>
-                                    <li><a href="#"><span>Recuperaci&oacute;n de Informaci&oacute;n</span></a>
+                                    <li><a href="/imsys/InfoRetrieval"><span>Recuperaci&oacute;n de Informaci&oacute;n</span></a>
                                     <li><a href="#"><span>Carga desde Sistema Central</span></a>
                                 </ul>
                             </li>
@@ -141,6 +141,10 @@
                     } else if(opt.equals("searchPoliticas")){
                     %>
                         <%@include file="/searchpoliticas.jsp"%>
+                    <%
+                    } else if(opt.equals("infoRetrieval")){
+                    %>
+                        <%@include file="/infoRetrieval.jsp"%>
                     <%
                     }
                     %>

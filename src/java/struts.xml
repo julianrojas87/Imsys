@@ -34,8 +34,8 @@
         </action>
         
         <action name="VerLecturas" class="com.imsys.admin.struts.action.LecturasAction" method="getLecturas">
-             <interceptor-ref name="SessionValidationStack" />
-             <result name="sessionexpired">index.jsp</result>
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
         
@@ -58,14 +58,14 @@
         </action>
         
         <action name="VerEventosCaja" class="com.imsys.admin.struts.action.EventosAction" method="getEventosCaja">
-             <interceptor-ref name="SessionValidationStack" />
-             <result name="sessionexpired">index.jsp</result>
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
         
         <action name="VerEventosMedidor" class="com.imsys.admin.struts.action.EventosAction" method="getEventosMedidor">
-             <interceptor-ref name="SessionValidationStack" />
-             <result name="sessionexpired">index.jsp</result>
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
         
@@ -130,8 +130,8 @@
         </action>
         
         <action name="VerUsuarios" class="com.imsys.admin.struts.action.UsersAction" method="getUsuarios">
-             <interceptor-ref name="SessionValidationStack" />
-             <result name="sessionexpired">index.jsp</result>
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
         
@@ -154,8 +154,8 @@
         </action>
         
         <action name="VerRoles" class="com.imsys.admin.struts.action.UsersAction" method="getRoles">
-             <interceptor-ref name="SessionValidationStack" />
-             <result name="sessionexpired">index.jsp</result>
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
         
@@ -178,8 +178,8 @@
         </action>
         
         <action name="VerPoliticas" class="com.imsys.admin.struts.action.UsersAction" method="getPoliticas">
-             <interceptor-ref name="SessionValidationStack" />
-             <result name="sessionexpired">index.jsp</result>
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
         </action>
         
@@ -199,6 +199,23 @@
             <interceptor-ref name="SessionValidationStack" />
             <result name="sessionexpired">index.jsp</result>
             <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="InfoRetrieval" class="com.imsys.admin.struts.action.InfoRetrievalAction" method="displayRetrieval">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="RetrieveInfo" class="com.imsys.admin.struts.action.InfoRetrievalAction" method="configureRetrieval">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileInputStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">1024</param>
+            </result>
         </action>
         
     </package>

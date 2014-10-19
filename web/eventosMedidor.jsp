@@ -158,5 +158,13 @@
                 </tbody>
             </table>
         </div>
+        <c:if test="${msj!=null}">
+            <script>
+                self.alert("<%=session.getAttribute("msj")%>");
+                <%
+                    session.setAttribute("msj", null);
+                %>
+            </script>
+        </c:if>
     </body>
 </html>

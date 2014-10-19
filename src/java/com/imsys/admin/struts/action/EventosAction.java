@@ -9,6 +9,7 @@ import com.imsys.admin.dao.control.AdminControl;
 import com.imsys.admin.dao.entity.EventoCaja;
 import com.imsys.admin.dao.entity.EventoMedidor;
 import com.imsys.admin.dao.entity.TipoEvento;
+import com.imsys.admin.dao.entity.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,6 +48,9 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         session.setAttribute("totalevec", eventc.size());
         session.setAttribute("actualevec", 1);
         session.setAttribute("mainopt", "eventosCaja");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Eventos de Caja.", 
+                u.getVccoduser(), "Main/Consultas/Eventos/EventosCaja");
         return SUCCESS;
     }
 
@@ -65,6 +69,9 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         session.setAttribute("totalevem", eventm.size());
         session.setAttribute("actualevem", 1);
         session.setAttribute("mainopt", "eventosMedidor");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Eventos de Medidor.", 
+                u.getVccoduser(), "Main/Consultas/Eventos/EventosMedidor");
         return SUCCESS;
     }
 
@@ -386,6 +393,9 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         session.setAttribute("totalevec", eventc.size());
         session.setAttribute("actualevec", 1);
         session.setAttribute("mainopt", "tipoEventos");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Tipos de Eventos.", 
+                u.getVccoduser(), "Main/Consultas/TipoEventos");
         return SUCCESS;
     }
 

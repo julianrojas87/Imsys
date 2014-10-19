@@ -42,6 +42,9 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("totallecs", lecs.size());
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "usuarios");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Usuarios.", 
+                u.getVccoduser(), "Main/Consultas/Usuarios");
         return SUCCESS;
     }
     
@@ -158,6 +161,8 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("totallecs", lecs.size());
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "roles");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Roles.", u.getVccoduser(), "Main/Consultas/Roles");
         return SUCCESS;
     }
     
@@ -274,6 +279,8 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("totallecs", lecs.size());
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "politicas");
+        Usuario u = (Usuario) session.getAttribute("userObject");
+        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó las Políticas.", u.getVccoduser(), "Main/Consultas/Politicas");
         return SUCCESS;
     }
     
