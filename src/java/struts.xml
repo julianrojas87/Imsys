@@ -218,5 +218,29 @@
             </result>
         </action>
         
+        <action name="VerLoadInfo" class="com.imsys.admin.struts.action.AdminSysLoadAction" method="displayLoadInfo">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="LoadInfo" class="com.imsys.admin.struts.action.AdminSysLoadAction" method="loadInfo">
+            <interceptor-ref name="SessionValidationStack" />
+            <interceptor-ref name="execAndWait" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="wait">main.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="ajaxRequest" class="com.imsys.admin.struts.action.AdminSysLoadAction" method="manageAjaxRequest">
+            <interceptor-ref name="SessionValidationStack" />
+            <result type="stream">
+                <!--Set Content Type here-->
+                <param name="contentType">text/html</param>
+                <!--Your input Stream variable name -->
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        
     </package>
 </struts>

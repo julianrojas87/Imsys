@@ -21,11 +21,16 @@ import com.imsys.admin.dao.entity.Politica;
 import com.imsys.admin.dao.entity.Rol;
 import com.imsys.admin.dao.entity.TipoEvento;
 import com.imsys.admin.dao.entity.Usuario;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -300,8 +305,10 @@ public class AdminControl {
     private void getConnection() {
         try {
             Class.forName("org.sqlite.JDBC");
-            cx = DriverManager.getConnection("jdbc:sqlite:/home/julian/Desktop/SQLite_Test");
-        } catch (ClassNotFoundException | SQLException ex) {
+            Properties props = new Properties();
+            props.load(new FileInputStream(new File(System.getProperty("user.home") + "/database.cfg")));
+            cx = DriverManager.getConnection(props.getProperty("DATA_BASE_LOCATION") + props.getProperty("DATA_BASE_NAME"));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -54,7 +54,7 @@
                             <li class='has-sub'><a href='#'><span>Procesos</span></a>
                                 <ul>
                                     <li><a href="/imsys/InfoRetrieval"><span>Recuperaci&oacute;n de Informaci&oacute;n</span></a>
-                                    <li><a href="#"><span>Carga desde Sistema Central</span></a>
+                                    <li><a href="/imsys/VerLoadInfo"><span>Carga desde Sistema Central</span></a>
                                 </ul>
                             </li>
                             <li class='has-sub'><a href='#'><span>Consultas</span></a>
@@ -145,6 +145,14 @@
                     } else if(opt.equals("infoRetrieval")){
                     %>
                         <%@include file="/infoRetrieval.jsp"%>
+                    <%
+                    } else if(opt.equals("infoLoad")){
+                    %>
+                        <%@include file="/infoload.jsp"%>
+                    <%
+                    } else if(opt.equals("loading")){
+                    %>
+                        <%@include file="/loading.jsp"%>
                     <%
                     }
                     %>

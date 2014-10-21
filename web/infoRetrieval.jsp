@@ -31,6 +31,10 @@
                                 <br>que contiene las lecturas de los medidores
                                 <br>registradas entre las fechas especificadas a continuaci&oacute;n
                             </h3>
+                            <h4>
+                                <br>El Formato del archivo descargado es el siguiente:
+                                <br>Fecha;ID Medidor;Serial;Voltaje;Corriente;Pot Activa;Pot Reactiva;Pot Aparente;Factor Pot;Ene Activa;Ene Reactiva;Ene Act Calc;Ene React Calc
+                            </h4>
                             <s:form theme="simple" action="/RetrieveInfo">
                                 Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
                                 Fecha Final: <sj:datepicker displayFormat="dd/mm/yy" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
