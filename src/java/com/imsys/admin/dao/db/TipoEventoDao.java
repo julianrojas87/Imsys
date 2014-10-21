@@ -82,4 +82,39 @@ public class TipoEventoDao {
             }
         }
     }
+    
+    public void eraseTable(Connection cx) throws SQLException {
+        String sql = "DELETE FROM M_TIPOSEVE";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = cx.prepareStatement(sql);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+    
+    public synchronized void reload(Connection cx, ArrayList<TipoEvento> eventTypes) throws SQLException {
+        PreparedStatement stmt = null;
+
+        for (TipoEvento tp : eventTypes) {
+            String sql = "INSERT INTO M_TIPOSEVE ( NCODTIPOEVE, VCDESEVE, LAPLICACAJA, "
+                    + "LAPLICAMED) VALUES (?, ?, ?, ?) ";
+            stmt = cx.prepareStatement(sql);
+
+            stmt.setInt(1, tp.getNccodtipoeve());
+            stmt.setString(2, tp.getVcdeseve());
+            stmt.setString(3, tp.getLaaplicacaja());
+            stmt.setString(4, tp.getLaaplicamed());
+            
+            stmt.executeUpdate();
+        }
+        
+        cx.close();
+    }
 }

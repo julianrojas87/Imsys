@@ -23,7 +23,6 @@ import com.imsys.admin.dao.entity.TipoEvento;
 import com.imsys.admin.dao.entity.Usuario;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -41,7 +40,7 @@ import java.util.logging.Logger;
 public class AdminControl {
 
     private Connection cx;
-    
+
     public void addBitacoraEntry(String operation, String usercode, String route) {
         getConnection();
         Bitacora b = new Bitacora();
@@ -77,7 +76,7 @@ public class AdminControl {
         }
         return us;
     }
-    
+
     public ArrayList<Usuario> getUsuarios() {
         getConnection();
         ArrayList<Usuario> usuarios = new ArrayList();
@@ -101,7 +100,7 @@ public class AdminControl {
         }
         return u;
     }
-    
+
     public Usuario getUserbyCode(String code) {
         getConnection();
         Usuario u = new Usuario();
@@ -253,7 +252,7 @@ public class AdminControl {
         }
         return eventsc;
     }
-    
+
     public ArrayList<Rol> getRoles() {
         getConnection();
         ArrayList<Rol> roles = new ArrayList();
@@ -265,7 +264,7 @@ public class AdminControl {
         }
         return roles;
     }
-    
+
     public Rol getRolbyCode(String code) {
         getConnection();
         Rol u = new Rol();
@@ -277,7 +276,7 @@ public class AdminControl {
         }
         return u;
     }
-    
+
     public ArrayList<Politica> getPoliticas() {
         getConnection();
         ArrayList<Politica> politicas = new ArrayList();
@@ -289,7 +288,7 @@ public class AdminControl {
         }
         return politicas;
     }
-    
+
     public Politica getPoliticabyCode(String code) {
         getConnection();
         Politica p = new Politica();
@@ -300,6 +299,84 @@ public class AdminControl {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return p;
+    }
+
+    public void eraseTable(String name) {
+        getConnection();
+        switch (name) {
+            case "users":
+                UsuarioDao uDao = new UsuarioDao();
+                try {
+                    uDao.eraseTable(cx);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "rolls":
+                RolDao rDao = new RolDao();
+                try {
+                    rDao.eraseTable(cx);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "politics":
+                PoliticaDao pDao = new PoliticaDao();
+                try {
+                    pDao.eraseTable(cx);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "eventTypes":
+                TipoEventoDao teDao = new TipoEventoDao();
+                try {
+                    teDao.eraseTable(cx);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+        }
+    }
+    
+    public void reloadUsers(ArrayList<Usuario> usuarios){
+        try {
+            getConnection();
+            UsuarioDao uDao = new UsuarioDao();
+            uDao.reload(cx, usuarios);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void reloadRolls(ArrayList<Rol> roles){
+        try {
+            getConnection();
+            RolDao rDao = new RolDao();
+            rDao.reload(cx, roles);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void reloadPolitics(ArrayList<Politica> politicas){
+        try {
+            getConnection();
+            PoliticaDao pDao = new PoliticaDao();
+            pDao.reload(cx, politicas);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void reloadEventTypes(ArrayList<TipoEvento> types){
+        try {
+            getConnection();
+            TipoEventoDao tpDao = new TipoEventoDao();
+            tpDao.reload(cx, types);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void getConnection() {

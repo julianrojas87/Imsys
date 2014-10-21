@@ -87,7 +87,7 @@ public class UsuarioDao {
             }
         }
     }
-    
+
     public Usuario loadbyCode(Connection c, String code) throws SQLException {
         String sql = "SELECT * FROM M_USUARIOS WHERE (VCCODUSER = ? ) ";
         PreparedStatement stmt = null;
@@ -119,5 +119,42 @@ public class UsuarioDao {
                 stmt.close();
             }
         }
+    }
+
+    public void eraseTable(Connection cx) throws SQLException {
+        String sql = "DELETE FROM M_USUARIOS";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = cx.prepareStatement(sql);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+
+    public synchronized void reload(Connection cx, ArrayList<Usuario> users) throws SQLException {
+        PreparedStatement stmt = null;
+
+        for (Usuario u : users) {
+            String sql = "INSERT INTO M_USUARIOS ( VCCODUSER, VCNOMBRE, VCPASS, "
+                    + "VCROLL, VCNIT, LACTIVO) VALUES (?, ?, ?, ?, ?, ?) ";
+            stmt = cx.prepareStatement(sql);
+
+            stmt.setString(1, u.getVccoduser());
+            stmt.setString(2, u.getVcnombre());
+            stmt.setString(3, u.getVcpass());
+            stmt.setString(4, u.getVcroll());
+            stmt.setString(5, u.getVcnit());
+            stmt.setString(6, u.getLactivo());
+            
+            stmt.executeUpdate();
+        }
+        
+        cx.close();
     }
 }

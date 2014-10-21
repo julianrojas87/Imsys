@@ -83,4 +83,39 @@ public class RolDao {
             }
         }
     }
+    
+    public void eraseTable(Connection cx) throws SQLException {
+        String sql = "DELETE FROM M_ROLL";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = cx.prepareStatement(sql);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+    
+    public synchronized void reload(Connection cx, ArrayList<Rol> roles) throws SQLException {
+        PreparedStatement stmt = null;
+
+        for (Rol r : roles) {
+            String sql = "INSERT INTO M_ROLL ( NCODROLL, VCDESROLL, LRLIMUSUARIO, "
+                    + "LROPERARIO) VALUES (?, ?, ?, ?) ";
+            stmt = cx.prepareStatement(sql);
+
+            stmt.setInt(1, r.getNcodroll());
+            stmt.setString(2, r.getVcdesroll());
+            stmt.setString(3, r.getLrlimusuario());
+            stmt.setString(4, r.getLroperario());
+            
+            stmt.executeUpdate();
+        }
+        
+        cx.close();
+    }
 }

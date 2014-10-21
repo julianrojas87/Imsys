@@ -26,7 +26,7 @@
                             max = progressbar.attr('max');
                     var refresh = setInterval(function () {
                         call();
-                    }, 100);
+                    }, 50);
                 }
 
                 function call() {

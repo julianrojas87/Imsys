@@ -86,4 +86,41 @@ public class PoliticaDao {
             }
         }
     }
+    
+    public void eraseTable(Connection cx) throws SQLException {
+        String sql = "DELETE FROM M_POLIROLL";
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = cx.prepareStatement(sql);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+    }
+    
+    public synchronized void reload(Connection cx, ArrayList<Politica> politicas) throws SQLException {
+        PreparedStatement stmt = null;
+
+        for (Politica p : politicas) {
+            String sql = "INSERT INTO M_POLIROLL ( VCCODRUTINA, LOPCION, LGRABAR, "
+                    + "LBORRAR, LIMPRIMIR, LSIMEX) VALUES (?, ?, ?, ?, ?, ?) ";
+            stmt = cx.prepareStatement(sql);
+
+            stmt.setString(1, p.getVccodrutina());
+            stmt.setString(2, p.getLopcion());
+            stmt.setString(3, p.getLgrabar());
+            stmt.setString(4, p.getLborrar());
+            stmt.setString(5, p.getLimprimir());
+            stmt.setString(6, p.getLsimex());
+            
+            stmt.executeUpdate();
+        }
+        
+        cx.close();
+    }
 }
