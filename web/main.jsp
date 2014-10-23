@@ -13,7 +13,7 @@
     Usuario u = (Usuario) session.getAttribute("userObject");
     String rol = u.getVcroll();
     Calendar cal = Calendar.getInstance();
-    String date = cal.get(Calendar.DATE)+"/"+cal.get(Calendar.MONTH)+"/"+cal.get(Calendar.YEAR);
+    String date = cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
 %>
 <html>
     <head>
@@ -27,7 +27,7 @@
         <div id="banner">
             <table width="100%" border="0" align="center">
                 <tr>
-                    <td align="left" width="451" height="100"><div><img src="resources/img/imsys.jpg" width="451" height="100" alt="IMSYS"/></div></td>
+                    <td align="left" width="451" height="100"><div><img src="resources/img/logo-horizontal.jpg" width="451" height="200" alt="IMSYS"/></div></td>
                     <td align="right" width="100%">
                         <div id="texto"><strong>Bienvenido: <%=(String) session.getAttribute("username")%></strong>&nbsp;&nbsp;
                             <br/>Rol de usuario: <strong> <%=rol%></strong>
@@ -47,7 +47,7 @@
                             <li><a href='/imsys/GoHome'><span>Home</span></a></li>
                             <li class='has-sub'><a href='#'><span>Archivos</span></a>
                                 <ul>
-                                    <li><a href="#"><span>Setup Default</span></a>
+                                    <li><a href="/imsys/VerSetup"><span>Default Setup</span></a>
                                     <li><a href="/imsys/VerMedidores"><span>Medidores</span></a>
                                 </ul>
                             </li>
@@ -73,7 +73,7 @@
                             </li>
                             <li class='has-sub'><a href='#'><span>Utilidades</span></a>
                                 <ul>
-                                    <li><a href="#"><span>Versi&oacute;n</span></a>
+                                    <li><a href="/imsys/VerVersion"><span>Versi&oacute;n</span></a>
                                 </ul>
                             </li>
                         </ul> 
@@ -81,78 +81,93 @@
                 </td>
                 <td width="797px">
                     <%
-                    String opt = (String) session.getAttribute("mainopt");
-                    if(opt.equals("home")){
+                        String opt = (String) session.getAttribute("mainopt");
+                        if (opt.equals("home")) {
                     %>
-                        <%@include file="/home.jsp"%>
+                    <jsp:include page="home.jsp" /> 
                     <%
-                    } else if(opt.equals("lecturas")){
+                    } else if (opt.equals("lecturas")) {
                     %>
-                        <%@include file="/lecturas.jsp"%>
+                    <jsp:include page="lecturas.jsp" /> 
                     <%
-                    } else if(opt.equals("searchLecturas")){
+                    } else if (opt.equals("searchLecturas")) {
                     %>
-                        <%@include file="/searchlecs.jsp"%>
+                    <jsp:include page="searchlecs.jsp" /> 
                     <%
-                    } else if(opt.equals("eventosCaja")){
+                    } else if (opt.equals("eventosCaja")) {
                     %>
-                        <%@include file="/eventosCaja.jsp"%>
+                    <jsp:include page="eventosCaja.jsp" /> 
                     <%
-                    } else if(opt.equals("eventosMedidor")){
+                    } else if (opt.equals("eventosMedidor")) {
                     %>
-                        <%@include file="/eventosMedidor.jsp"%>
+                    <jsp:include page="eventosMedidor.jsp" /> 
                     <%
-                    } else if(opt.equals("searchEventC")){
+                    } else if (opt.equals("searchEventC")) {
                     %>
-                        <%@include file="/searcheventsc.jsp"%>
+                    <jsp:include page="searcheventsc.jsp" /> 
                     <%
-                    } else if(opt.equals("searchEventM")){
+                    } else if (opt.equals("searchEventM")) {
                     %>
-                        <%@include file="/searcheventsm.jsp"%>
+                    <jsp:include page="searcheventsm.jsp" /> 
                     <%
-                    } else if(opt.equals("tipoEventos")){
+                    } else if (opt.equals("tipoEventos")) {
                     %>
-                        <%@include file="/tipoeventos.jsp"%>
+                    <jsp:include page="tipoeventos.jsp" /> 
                     <%
-                    } else if(opt.equals("searchTipoEventos")){
+                    } else if (opt.equals("searchTipoEventos")) {
                     %>
-                        <%@include file="/searchtipoeventos.jsp"%>
+                    <jsp:include page="searchtipoeventos.jsp" /> 
                     <%
-                    } else if(opt.equals("usuarios")){
+                    } else if (opt.equals("usuarios")) {
                     %>
-                        <%@include file="/usuarios.jsp"%>
+                    <jsp:include page="usuarios.jsp" /> 
                     <%
-                    } else if(opt.equals("searchUsers")){
+                    } else if (opt.equals("searchUsers")) {
                     %>
-                        <%@include file="/searchusers.jsp"%>
+                    <jsp:include page="searchusers.jsp" /> 
                     <%
-                    } else if(opt.equals("roles")){
+                    } else if (opt.equals("roles")) {
                     %>
-                        <%@include file="/roles.jsp"%>
+                    <jsp:include page="roles.jsp" /> 
                     <%
-                    } else if(opt.equals("searchRoles")){
+                    } else if (opt.equals("searchRoles")) {
                     %>
-                        <%@include file="/searchroles.jsp"%>
+                    <jsp:include page="searchroles.jsp" /> 
                     <%
-                    } else if(opt.equals("politicas")){
+                    } else if (opt.equals("politicas")) {
                     %>
-                        <%@include file="/politicas.jsp"%>
+                    <jsp:include page="politicas.jsp" /> 
                     <%
-                    } else if(opt.equals("searchPoliticas")){
+                    } else if (opt.equals("searchPoliticas")) {
                     %>
-                        <%@include file="/searchpoliticas.jsp"%>
+                    <jsp:include page="searchpoliticas.jsp" /> 
                     <%
-                    } else if(opt.equals("infoRetrieval")){
+                    } else if (opt.equals("infoRetrieval")) {
                     %>
-                        <%@include file="/infoRetrieval.jsp"%>
+                    <jsp:include page="infoRetrieval.jsp" /> 
                     <%
-                    } else if(opt.equals("infoLoad")){
+                    } else if (opt.equals("infoLoad")) {
                     %>
-                        <%@include file="/infoload.jsp"%>
+                    <jsp:include page="infoload.jsp" /> 
                     <%
-                    } else if(opt.equals("loading")){
+                    } else if (opt.equals("loading")) {
                     %>
-                        <%@include file="/loading.jsp"%>
+                    <jsp:include page="loading.jsp" /> 
+                    <%
+                    } else if (opt.equals("setup")) {
+                    %>
+                    <%@include file="/setupDefault.jsp"%>
+                    <%                    } else if (opt.equals("medidores")) {
+                    %>
+                    <jsp:include page="medidores.jsp" /> 
+                    <%
+                    } else if (opt.equals("searchMeters")) {
+                    %>
+                    <jsp:include page="searchmedidores.jsp" /> 
+                    <%
+                    } else if (opt.equals("version")) {
+                    %>
+                    <jsp:include page="version.jsp" /> 
                     <%
                     }
                     %>

@@ -19,11 +19,11 @@
         </style>
     </head>
     <body style="background-color: #ffffff;">
-        <div  style="position: relative;  top: 100px;" >
+        <div>
             <table border="0" align="center" width="53" bgcolor="white">
                 <tr>
                     <td align="center" colspan="2">
-                        <div><img src="resources/img/imsys.jpg" width="496" height="146" alt="IMSYS" /></div>
+                        <div><img src="resources/img/logo-vertical.jpg" width="496" height="370" alt="IMSYS" /></div>
                     </td>
                 </tr>
                 <tr>
@@ -34,7 +34,7 @@
                         <div align="center">
                             <h1>Web App de Sistema Embebido</h1>
                         </div>
-                        <h5 align="center"> Version 0.1</h5>
+                        <h5 align="center"> Version 1.0</h5>
                     </td>
                 </tr>
                 <tr>

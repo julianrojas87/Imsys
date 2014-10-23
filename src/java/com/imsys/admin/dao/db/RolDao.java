@@ -53,7 +53,7 @@ public class RolDao {
         return results;
     }
     
-    public Rol loadbyCode(Connection c, String code) throws SQLException {
+    public Rol loadbyCode(Connection c, int code) throws SQLException {
         String sql = "SELECT * FROM M_ROLL WHERE (NCODROLL = ? ) ";
         PreparedStatement stmt = null;
         ResultSet result = null;
@@ -61,7 +61,7 @@ public class RolDao {
 
         try {
             stmt = c.prepareStatement(sql);
-            stmt.setString(1, code);
+            stmt.setInt(1, code);
             result = stmt.executeQuery();
 
             if (result.next()) {

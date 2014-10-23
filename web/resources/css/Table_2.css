@@ -1,6 +1,6 @@
 .datagrid table { 
     border-collapse: collapse; 
-    text-align: center; width: 100%; 
+    width: 100%; 
 } 
 .datagrid {
     font: normal 12px/150% Arial, Helvetica, sans-serif; 
@@ -22,7 +22,8 @@
     color:#FFFFFF; 
     font-size: 15px; 
     font-weight: bold; 
-    border-left: 1px solid #0070A8; 
+    border-left: 1px solid #0070A8;
+    text-align: center;
 } 
 .datagrid table thead th:first-child { 
     border: none; 
@@ -30,8 +31,9 @@
 .datagrid table tbody td { 
     color: #00496B; 
     border-left: none;
-    font-size: 12px;
-    font-weight: normal; 
+    font-size: 14px;
+    font-weight: normal;
+    text-align: right;
 }
 .datagrid table tbody .alt td { 
     background: #E1EEF4; 

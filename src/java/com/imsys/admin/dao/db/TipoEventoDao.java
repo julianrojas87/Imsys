@@ -53,7 +53,7 @@ public class TipoEventoDao {
         return results;
     }
 
-    public TipoEvento loadByCode(Connection c, String code) throws SQLException {
+    public TipoEvento loadByCode(Connection c, int code) throws SQLException {
         String sql = "SELECT * FROM M_TIPOSEVE WHERE (NCODTIPOEVE = ? ) ";
         PreparedStatement stmt = null;
         ResultSet result = null;
@@ -61,7 +61,7 @@ public class TipoEventoDao {
 
         try {
             stmt = c.prepareStatement(sql);
-            stmt.setString(1, code);
+            stmt.setInt(1, code);
             result = stmt.executeQuery();
 
             if (result.next()) {

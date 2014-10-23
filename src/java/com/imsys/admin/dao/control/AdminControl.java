@@ -9,6 +9,8 @@ import com.imsys.admin.dao.db.BitacoraDao;
 import com.imsys.admin.dao.db.EventoCajaDao;
 import com.imsys.admin.dao.db.EventoMedidorDao;
 import com.imsys.admin.dao.db.LecturaDao;
+import com.imsys.admin.dao.db.MedidorDao;
+import com.imsys.admin.dao.db.ParametrosDao;
 import com.imsys.admin.dao.db.PoliticaDao;
 import com.imsys.admin.dao.db.RolDao;
 import com.imsys.admin.dao.db.TipoEventoDao;
@@ -17,6 +19,8 @@ import com.imsys.admin.dao.entity.Bitacora;
 import com.imsys.admin.dao.entity.EventoCaja;
 import com.imsys.admin.dao.entity.EventoMedidor;
 import com.imsys.admin.dao.entity.Lectura;
+import com.imsys.admin.dao.entity.Medidor;
+import com.imsys.admin.dao.entity.Parametros;
 import com.imsys.admin.dao.entity.Politica;
 import com.imsys.admin.dao.entity.Rol;
 import com.imsys.admin.dao.entity.TipoEvento;
@@ -241,7 +245,7 @@ public class AdminControl {
         return events;
     }
 
-    public TipoEvento getTipoEventoByCode(String value) {
+    public TipoEvento getTipoEventoByCode(int value) {
         getConnection();
         TipoEvento eventsc = new TipoEvento();
         TipoEventoDao ecDao = new TipoEventoDao();
@@ -265,7 +269,7 @@ public class AdminControl {
         return roles;
     }
 
-    public Rol getRolbyCode(String code) {
+    public Rol getRolbyCode(int code) {
         getConnection();
         Rol u = new Rol();
         RolDao uDao = new RolDao();
@@ -336,10 +340,18 @@ public class AdminControl {
                     Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
+            case "params":
+                ParametrosDao paDao = new ParametrosDao();
+                try {
+                    paDao.eraseTable(cx);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
         }
     }
-    
-    public void reloadUsers(ArrayList<Usuario> usuarios){
+
+    public void reloadUsers(ArrayList<Usuario> usuarios) {
         try {
             getConnection();
             UsuarioDao uDao = new UsuarioDao();
@@ -348,8 +360,8 @@ public class AdminControl {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void reloadRolls(ArrayList<Rol> roles){
+
+    public void reloadRolls(ArrayList<Rol> roles) {
         try {
             getConnection();
             RolDao rDao = new RolDao();
@@ -358,8 +370,8 @@ public class AdminControl {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void reloadPolitics(ArrayList<Politica> politicas){
+
+    public void reloadPolitics(ArrayList<Politica> politicas) {
         try {
             getConnection();
             PoliticaDao pDao = new PoliticaDao();
@@ -368,8 +380,8 @@ public class AdminControl {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void reloadEventTypes(ArrayList<TipoEvento> types){
+
+    public void reloadEventTypes(ArrayList<TipoEvento> types) {
         try {
             getConnection();
             TipoEventoDao tpDao = new TipoEventoDao();
@@ -377,6 +389,60 @@ public class AdminControl {
         } catch (SQLException ex) {
             Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Parametros getParams() {
+        Parametros params = null;
+        try {
+            getConnection();
+            ParametrosDao pDao = new ParametrosDao();
+            params = pDao.getParams(cx);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return params;
+    }
+    
+    public void insertParams(Parametros params) {
+        getConnection();
+        ParametrosDao pDao = new ParametrosDao();
+        pDao.insert(cx, params);
+    }
+    
+    public ArrayList<Medidor> getMedidores() {
+        getConnection();
+        ArrayList<Medidor> medidores = new ArrayList();
+        MedidorDao mDao = new MedidorDao();
+        try {
+            medidores = mDao.listAll(cx);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return medidores;
+    }
+
+    public ArrayList<Medidor> getMedidorbySerie(String serie) {
+        getConnection();
+        ArrayList<Medidor> m = new ArrayList();
+        MedidorDao mDao = new MedidorDao();
+        try {
+            m = mDao.getBySerie(cx, serie);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return m;
+    }
+    
+    public ArrayList<Medidor> getMedidorbyDir(int dir) {
+        getConnection();
+        ArrayList<Medidor> m = new ArrayList();
+        MedidorDao mDao = new MedidorDao();
+        try {
+            m = mDao.getByDir(cx, dir);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return m;
     }
 
     private void getConnection() {

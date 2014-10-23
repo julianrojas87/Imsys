@@ -49,7 +49,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         session.setAttribute("actualevec", 1);
         session.setAttribute("mainopt", "eventosCaja");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Eventos de Caja.", 
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó los Eventos de Caja.",
                 u.getVccoduser(), "Main/Consultas/Eventos/EventosCaja");
         return SUCCESS;
     }
@@ -70,7 +70,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         session.setAttribute("actualevem", 1);
         session.setAttribute("mainopt", "eventosMedidor");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Eventos de Medidor.", 
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó los Eventos de Medidor.",
                 u.getVccoduser(), "Main/Consultas/Eventos/EventosMedidor");
         return SUCCESS;
     }
@@ -183,12 +183,19 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             inputs = true;
             if (dispeventsc.size() > 0) {
                 ArrayList<EventoCaja> temp = new ArrayList();
-                for (EventoCaja ec : dispeventsc) {
-                    if (ec.getNcodtipoeve() == Integer.parseInt(this.getCode())) {
-                        temp.add(ec);
+                try {
+                    for (EventoCaja ec : dispeventsc) {
+                        if (ec.getNcodtipoeve() == Integer.parseInt(this.getCode())) {
+                            temp.add(ec);
+                        }
                     }
+                    dispeventsc = temp;
+                } catch (NumberFormatException e) {
+                    session.setAttribute("mainopt", "eventosCaja");
+                    session.setAttribute("msj", "El Parámetro de busqueda Código solo acepta valores numéricos");
+                    return SUCCESS;
                 }
-                dispeventsc = temp;
+
             } else {
                 dispeventsc = ac.getEventCBy("codigo", this.getCode());
             }
@@ -292,12 +299,18 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             inputs = true;
             if (dispeventsm.size() > 0) {
                 ArrayList<EventoMedidor> temp = new ArrayList();
-                for (EventoMedidor em : dispeventsm) {
-                    if (em.getNcodtipoeve() == Integer.parseInt(this.getCode())) {
-                        temp.add(em);
+                try {
+                    for (EventoMedidor em : dispeventsm) {
+                        if (em.getNcodtipoeve() == Integer.parseInt(this.getCode())) {
+                            temp.add(em);
+                        }
                     }
+                    dispeventsm = temp;
+                } catch (NumberFormatException e) {
+                    session.setAttribute("mainopt", "eventosMedidor");
+                    session.setAttribute("msj", "El Parámetro de busqueda Código solo acepta valores numéricos");
+                    return SUCCESS;
                 }
-                dispeventsm = temp;
             } else {
                 dispeventsm = ac.getEventMBy("codigo", this.getCode());
             }
@@ -362,7 +375,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
                 }
             }
         } else {
-            opt =1;
+            opt = 1;
             if (eventsm.size() > 10) {
                 dispeventsm = eventsm.subList(0, 10);
             } else {
@@ -394,7 +407,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         session.setAttribute("actualevec", 1);
         session.setAttribute("mainopt", "tipoEventos");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Tipos de Eventos.", 
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó los Tipos de Eventos.",
                 u.getVccoduser(), "Main/Consultas/TipoEventos");
         return SUCCESS;
     }
@@ -439,10 +452,17 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
         AdminControl ac = new AdminControl();
 
         if (this.getCode().length() > 0) {
-            TipoEvento t = ac.getTipoEventoByCode(this.getCode());
-            if(t != null){
-                te.add(t);
+            try {
+                TipoEvento t = ac.getTipoEventoByCode(Integer.parseInt(this.getCode()));
+                if (t != null) {
+                    te.add(t);
+                }
+            } catch (NumberFormatException e) {
+                session.setAttribute("mainopt", "tipoEventos");
+                session.setAttribute("msj", "El Parámetro de busqueda Código solo acepta valores numéricos");
+                return SUCCESS;
             }
+
         } else {
             session.setAttribute("mainopt", "tipoEventos");
             session.setAttribute("msj", "Ingrese por lo menos un parámetro de busqueda");
@@ -462,7 +482,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             return SUCCESS;
         }
     }
-    
+
     public String displaySearchTipoEventN() {
         ArrayList<TipoEvento> eventc = (ArrayList<TipoEvento>) session.getAttribute("searchtipoevents");
         int total = (eventc.size() / 10) + 1;

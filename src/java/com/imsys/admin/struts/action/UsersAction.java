@@ -21,13 +21,13 @@ import org.apache.struts2.interceptor.ServletRequestAware;
  *
  * @author julian
  */
-public class UsersAction extends ActionSupport implements ServletRequestAware{
-    
+public class UsersAction extends ActionSupport implements ServletRequestAware {
+
     private String btnopt;
     private String code;
     private HttpSession session;
-    
-    public String getUsuarios(){
+
+    public String getUsuarios() {
         AdminControl ac = new AdminControl();
         ArrayList<Usuario> lecs = ac.getUsuarios();
         List<Usuario> displecs = new ArrayList();
@@ -43,11 +43,11 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "usuarios");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Usuarios.", 
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó los Usuarios.",
                 u.getVccoduser(), "Main/Consultas/Usuarios");
         return SUCCESS;
     }
-    
+
     public String displayUserN() {
         AdminControl ac = new AdminControl();
         ArrayList<Usuario> lecs = ac.getUsuarios();
@@ -83,13 +83,13 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         return SUCCESS;
     }
 
-   public String searchUsers() {
+    public String searchUsers() {
         List<Usuario> te = new ArrayList();
         AdminControl ac = new AdminControl();
 
         if (this.getCode().length() > 0) {
             Usuario t = ac.getUserbyCode(this.getCode());
-            if(t != null){
+            if (t != null) {
                 te.add(t);
             }
         } else {
@@ -111,8 +111,8 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
             return SUCCESS;
         }
     }
-   
-   public String displaySearchUserN() {
+
+    public String displaySearchUserN() {
         ArrayList<Usuario> lecs = (ArrayList<Usuario>) session.getAttribute("searchusers");
         int total = (lecs.size() / 10) + 1;
         int opt = Integer.parseInt(this.getBtnopt());
@@ -144,9 +144,9 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("actuallec", opt);
         session.setAttribute("mainopt", "searchUsers");
         return SUCCESS;
-   }
-   
-   public String getRoles(){
+    }
+
+    public String getRoles() {
         AdminControl ac = new AdminControl();
         ArrayList<Rol> lecs = ac.getRoles();
         List<Rol> displecs = new ArrayList();
@@ -162,10 +162,10 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "roles");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó los Roles.", u.getVccoduser(), "Main/Consultas/Roles");
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó los Roles.", u.getVccoduser(), "Main/Consultas/Roles");
         return SUCCESS;
     }
-    
+
     public String displayRolN() {
         AdminControl ac = new AdminControl();
         ArrayList<Rol> lecs = ac.getRoles();
@@ -201,14 +201,20 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         return SUCCESS;
     }
 
-   public String searchRoles() {
+    public String searchRoles() {
         List<Rol> te = new ArrayList();
         AdminControl ac = new AdminControl();
 
         if (this.getCode().length() > 0) {
-            Rol t = ac.getRolbyCode(this.getCode());
-            if(t != null){
-                te.add(t);
+            try {
+                Rol t = ac.getRolbyCode(Integer.parseInt(this.getCode()));
+                if (t != null) {
+                    te.add(t);
+                }
+            } catch (NumberFormatException e) {
+                session.setAttribute("mainopt", "roles");
+                session.setAttribute("msj", "El Parámetro de busqueda Código solo acepta valore numéricos");
+                return SUCCESS;
             }
         } else {
             session.setAttribute("mainopt", "roles");
@@ -229,8 +235,8 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
             return SUCCESS;
         }
     }
-   
-   public String displaySearchRolN() {
+
+    public String displaySearchRolN() {
         ArrayList<Rol> lecs = (ArrayList<Rol>) session.getAttribute("searchroles");
         int total = (lecs.size() / 10) + 1;
         int opt = Integer.parseInt(this.getBtnopt());
@@ -262,9 +268,9 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("actuallec", opt);
         session.setAttribute("mainopt", "searchRoles");
         return SUCCESS;
-   }
-   
-   public String getPoliticas(){
+    }
+
+    public String getPoliticas() {
         AdminControl ac = new AdminControl();
         ArrayList<Politica> lecs = ac.getPoliticas();
         List<Politica> displecs = new ArrayList();
@@ -280,10 +286,10 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "politicas");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó las Políticas.", u.getVccoduser(), "Main/Consultas/Politicas");
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó las Políticas.", u.getVccoduser(), "Main/Consultas/Politicas");
         return SUCCESS;
     }
-    
+
     public String displayPoliticaN() {
         AdminControl ac = new AdminControl();
         ArrayList<Politica> lecs = ac.getPoliticas();
@@ -319,13 +325,13 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         return SUCCESS;
     }
 
-   public String searchPoliticas() {
+    public String searchPoliticas() {
         List<Politica> te = new ArrayList();
         AdminControl ac = new AdminControl();
 
         if (this.getCode().length() > 0) {
             Politica t = ac.getPoliticabyCode(this.getCode());
-            if(t != null){
+            if (t != null) {
                 te.add(t);
             }
         } else {
@@ -347,8 +353,8 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
             return SUCCESS;
         }
     }
-   
-   public String displaySearchPoliticaN() {
+
+    public String displaySearchPoliticaN() {
         ArrayList<Politica> lecs = (ArrayList<Politica>) session.getAttribute("searchpoliticas");
         int total = (lecs.size() / 10) + 1;
         int opt = Integer.parseInt(this.getBtnopt());
@@ -380,7 +386,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("actuallec", opt);
         session.setAttribute("mainopt", "searchPoliticas");
         return SUCCESS;
-   }
+    }
 
     public String getBtnopt() {
         return btnopt;
@@ -402,5 +408,5 @@ public class UsersAction extends ActionSupport implements ServletRequestAware{
     public void setServletRequest(HttpServletRequest hsr) {
         this.session = hsr.getSession();
     }
-    
+
 }

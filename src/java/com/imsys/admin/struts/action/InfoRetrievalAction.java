@@ -62,13 +62,13 @@ public class InfoRetrievalAction extends ActionSupport implements ServletRequest
                 session.setAttribute("mainopt", "infoRetrieval");
                 session.setAttribute("msj", "Especifique una Fecha Inicial "
                         + "anterior a la Fecha Final para realizar la busqueda");
-                return SUCCESS;
+                return ERROR;
             }
         } else {
             session.setAttribute("mainopt", "infoRetrieval");
             session.setAttribute("msj", "Ingrese tanto la Fecha Inicial "
                     + "como la Fecha Final para realizar la busqueda");
-            return SUCCESS;
+            return ERROR;
         }
 
         PrintWriter writer = new PrintWriter(System.getProperty("user.home") + "/backup.txt");

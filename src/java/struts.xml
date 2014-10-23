@@ -24,6 +24,12 @@
             <result name="sessionexpired">index.jsp</result>
         </action>
         
+        <action name="VerVersion" class="com.imsys.admin.struts.action.SingInAction" method="goVersion">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="success">main.jsp</result>
+            <result name="sessionexpired">index.jsp</result>
+        </action>
+        
         <action name="SingIn" class="com.imsys.admin.struts.action.SingInAction" method="singin">
             <result name="success">main.jsp</result>
             <result name="input">index.jsp</result>
@@ -216,6 +222,7 @@
                 <param name="contentDisposition">attachment;filename="${filename}"</param>
                 <param name="bufferSize">1024</param>
             </result>
+            <result name="error">main.jsp</result>
         </action>
         
         <action name="VerLoadInfo" class="com.imsys.admin.struts.action.AdminSysLoadAction" method="displayLoadInfo">
@@ -235,11 +242,45 @@
         <action name="ajaxRequest" class="com.imsys.admin.struts.action.AdminSysLoadAction" method="manageAjaxRequest">
             <interceptor-ref name="SessionValidationStack" />
             <result type="stream">
-                <!--Set Content Type here-->
                 <param name="contentType">text/html</param>
-                <!--Your input Stream variable name -->
                 <param name="inputName">inputStream</param>
             </result>
+        </action>
+        
+        <action name="VerSetup" class="com.imsys.admin.struts.action.ArchivosAction" method="displaySetup">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="UpdateSetup" class="com.imsys.admin.struts.action.ArchivosAction" method="updateSetup">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="VerMedidores" class="com.imsys.admin.struts.action.ArchivosAction" method="displayMeters">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplayMeterN" class="com.imsys.admin.struts.action.ArchivosAction" method="displayMeterN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="SearchMeters" class="com.imsys.admin.struts.action.ArchivosAction" method="searchMeters">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
+        </action>
+        
+        <action name="DisplaySearchMeterN" class="com.imsys.admin.struts.action.ArchivosAction" method="displaySearchMeterN">
+            <interceptor-ref name="SessionValidationStack" />
+            <result name="sessionexpired">index.jsp</result>
+            <result name="success">main.jsp</result>
         </action>
         
     </package>

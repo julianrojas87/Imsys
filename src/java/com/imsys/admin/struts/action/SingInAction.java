@@ -67,6 +67,11 @@ public class SingInAction extends ActionSupport implements ServletRequestAware{
         session.setAttribute("mainopt", "home");
         return SUCCESS;
     }
+    
+    public String goVersion(){
+        session.setAttribute("mainopt", "version");
+        return SUCCESS;
+    }
 
     public String getUsername() {
         return username;
