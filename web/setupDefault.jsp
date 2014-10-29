@@ -30,22 +30,23 @@
                                 C&oacute;digo Circuito: <s:textfield name="codcto"/><br> 
                                 C&oacute;digo Transformador: <s:textfield name="codtrans"/><br> 
                                 C&oacute;digo Caja: <s:textfield name="codcaja"/><br>
+                                Puerto HTTP: <s:textfield name="ptohttp"/><br>
+                                Puerto Socket: <s:textfield name="ptosocket"/><br>
                                 Direcci&oacute;n IP Local: <s:textfield name="diriploc"/><br>
                                 Direcci&oacute;n IP WAN: <s:textfield name="diripwan"/><br>
-                                Tipo de Red: <s:textfield name="tipored"/><br>
-                                Puerto HTTP: <s:textfield name="ptohttp"/><br>
-                                Puerto Socket: <s:textfield name="ptosocket"/>
+                                Tipo de Red: WAN<s:checkbox name="wan"/> LAN <s:checkbox name="lan"/>
                             </td>
                             <td>
-                                Frecuencia de Lectura: <s:textfield name="freclec"/><br>
-                                Delta de Mantenimiento: <s:textfield name="deltaman"/><br>
-                                Puerto Serial: <s:textfield name="ptoserial"/><br> 
-                                Velocidad: <s:textfield name="velocidad"/><br> 
-                                Bits de Datos: <s:textfield name="bitsdatos"/><br> 
-                                Paridad: <s:textfield name="paridad"/><br> 
-                                Bits de Parada: <s:textfield name="bitsparada"/><br> 
+                                Admin Servlet: <s:textfield name="servlet"/><br>
+                                Frecuencia de Lectura (minutos): <s:textfield name="freclec"/><br>
+                                Delta de Mantenimiento (minutos): <s:textfield name="deltaman"/><br>
+                                Puerto Serial: <s:textfield name="ptoserial"/><br>
                                 Codificaci&oacute;n: <s:textfield name="codific"/><br> 
-                                Coordenadas GPS: <s:textfield name="gps"/>
+                                Velocidad (Kbps): <s:select cssStyle="WIDTH:153px" name="velocidad" list="speeds"/><br> 
+                                Bits de Datos: <s:select cssStyle="WIDTH:153px" name="bitsdatos" list="databits"/><br> 
+                                Paridad: <s:select cssStyle="WIDTH:153px" name="paridad" list="parity"/><br>
+                                Bits de Parada: <s:select cssStyle="WIDTH:153px" name="bitsparada" list="stopbits"/><br>
+                                Coordenadas GPS: Lat: <s:textfield size="10" name="latitud"/> Long: <s:textfield size="10" name="longitud"/>
                             </td>
                         </tr>
                         <tr>

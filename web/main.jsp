@@ -6,7 +6,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="com.imsys.admin.dao.entity.Usuario" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="html" uri="/struts-tags"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <%
@@ -32,54 +32,54 @@
                         <div id="texto"><strong>Bienvenido: <%=(String) session.getAttribute("username")%></strong>&nbsp;&nbsp;
                             <br/>Rol de usuario: <strong> <%=rol%></strong>
                             <br/>Fecha de ingreso al sistema: <strong><%=date%></strong>
-                            <br/>[<a href="/imsys/SingOut">Cerrar sesi&oacute;n</a>]
+                            <br/>[<s:a action="/SingOut" >Cerrar sesi&oacute;n</s:a>]
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <table width="93%" border="0" align="center">
+                <tr>
+                    <td align="left" width="200">
+                        <div id='cssmenu'>
+                            <ul>
+                                <li><s:a action="/GoHome"><span>Home</span></s:a></li>
+                                <li class='has-sub'><a href='#'><span>Archivos</span></a>
+                                    <ul>
+                                        <li><s:a action="/VerSetup"><span>Default Setup</span></s:a>
+                                    <li><s:a action="/VerMedidores"><span>Medidores</span></s:a>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'><a href='#'><span>Procesos</span></a>
+                                    <ul>
+                                        <li><s:a action="/InfoRetrieval"><span>Recuperaci&oacute;n de Informaci&oacute;n</span></s:a>
+                                    <li><s:a action="/VerLoadInfo"><span>Carga desde Sistema Central</span></s:a>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'><a href='#'><span>Consultas</span></a>
+                                    <ul>
+                                        <li><s:a action="/VerLecturas"><span>Consulta de Lecturas</span></s:a>
+                                        <li class="has-sub"><a href="#"><span>Consulta de Eventos</span></a>
+                                            <ul>
+                                                <li><s:a action="/VerEventosCaja"><span>Eventos de Caja</span></s:a>
+                                            <li><s:a action="/VerEventosMedidor"><span>Eventos de Medidores</span></s:a>
+                                            </ul>
+                                        <li><s:a action="/VerTipoEventos"><span>Consulta de Tipos de Eventos</span></s:a>
+                                    <li><s:a action="/VerUsuarios"><span>Consulta de Usuarios</span></s:a>
+                                    <li><s:a action="/VerRoles"><span>Consulta de Roles</span></s:a>
+                                    <li><s:a action="/VerPoliticas"><span>Consulta de Pol&iacute;ticas</span></s:a>
+                                    </ul>
+                                </li>
+                                <li class='has-sub'><a href='#'><span>Utilidades</span></a>
+                                    <ul>
+                                        <li><s:a action="/VerVersion"><span>Versi&oacute;n</span></s:a>
+                                    </ul>
+                                </li>
+                            </ul> 
                         </div>
                     </td>
-                </tr>
-            </table>
-        </div>
-
-        <table width="93%" border="0" align="center">
-            <tr>
-                <td align="left" width="200">
-                    <div id='cssmenu'>
-                        <ul>
-                            <li><a href='/imsys/GoHome'><span>Home</span></a></li>
-                            <li class='has-sub'><a href='#'><span>Archivos</span></a>
-                                <ul>
-                                    <li><a href="/imsys/VerSetup"><span>Default Setup</span></a>
-                                    <li><a href="/imsys/VerMedidores"><span>Medidores</span></a>
-                                </ul>
-                            </li>
-                            <li class='has-sub'><a href='#'><span>Procesos</span></a>
-                                <ul>
-                                    <li><a href="/imsys/InfoRetrieval"><span>Recuperaci&oacute;n de Informaci&oacute;n</span></a>
-                                    <li><a href="/imsys/VerLoadInfo"><span>Carga desde Sistema Central</span></a>
-                                </ul>
-                            </li>
-                            <li class='has-sub'><a href='#'><span>Consultas</span></a>
-                                <ul>
-                                    <li><a href="/imsys/VerLecturas"><span>Consulta de Lecturas</span></a>
-                                    <li class="has-sub"><a href="#"><span>Consulta de Eventos</span></a>
-                                        <ul>
-                                            <li><a href="/imsys/VerEventosCaja"><span>Eventos de Caja</span></a>
-                                            <li><a href="/imsys/VerEventosMedidor"><span>Eventos de Medidores</span></a>
-                                        </ul>
-                                    <li><a href="/imsys/VerTipoEventos"><span>Consulta de Tipos de Eventos</span></a>
-                                    <li><a href="/imsys/VerUsuarios"><span>Consulta de Usuarios</span></a>
-                                    <li><a href="/imsys/VerRoles"><span>Consulta de Roles</span></a>
-                                    <li><a href="/imsys/VerPoliticas"><span>Consulta de Pol&iacute;ticas</span></a>
-                                </ul>
-                            </li>
-                            <li class='has-sub'><a href='#'><span>Utilidades</span></a>
-                                <ul>
-                                    <li><a href="/imsys/VerVersion"><span>Versi&oacute;n</span></a>
-                                </ul>
-                            </li>
-                        </ul> 
-                    </div>
-                </td>
-                <td width="797px">
+                    <td width="797px">
                     <%
                         String opt = (String) session.getAttribute("mainopt");
                         if (opt.equals("home")) {
@@ -169,7 +169,7 @@
                     %>
                     <jsp:include page="version.jsp" /> 
                     <%
-                    }
+                        }
                     %>
                 </td>
                 <td></td>

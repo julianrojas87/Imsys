@@ -6,6 +6,7 @@
 package com.imsys.admin.struts.action;
 
 import com.imsys.admin.dao.control.AdminControl;
+import com.imsys.admin.dao.entity.Medidor;
 import com.imsys.admin.dao.entity.Parametros;
 import com.imsys.admin.dao.entity.Politica;
 import com.imsys.admin.dao.entity.Rol;
@@ -62,8 +63,9 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         String ipaddress = params.getLred() == 0 ? params.getVciplocal() : params.getVcipwan();
         File retrievedFile = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
 
-        retrievedFile = this.loadByTCP(retrievedFile, loading, ipaddress, params.getNptohttp(), params.getNptosocket());
-        //retrievedFile = this.loadByHTTP(retrievedFile, loading, ipaddress, params.getNptohttp());
+        retrievedFile = this.loadByTCP(retrievedFile, loading, params.getVcservlet(), ipaddress, 
+                params.getNptohttp(), params.getNptosocket());
+        //retrievedFile = this.loadByHTTP(retrievedFile, loading, params.getVcservlet(), ipaddress, params.getNptohttp());
         this.processRetrievedFile(retrievedFile, loading, ac);
 
         session.setAttribute("loading", 100);
@@ -75,9 +77,9 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         return SUCCESS;
     }
 
-    private File loadByTCP(File file, int loading, String ip, int httpport, int socketport) 
+    private File loadByTCP(File file, int loading, String servlet, String ip, int httpport, int socketport) 
             throws MalformedURLException, IOException {
-        //URL url = new URL("http://"+ip+":"+httpport+"/WebAppName/ServletName?opt=tcp");
+        //URL url = new URL("http://"+ip+":"+httpport+"/WebAppName/"+servlet+"?opt=tcp");
         URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=tcp");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setConnectTimeout(5000);
@@ -107,9 +109,9 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         return file;
     }
 
-    private File loadByHTTP(File file, int loading, String ip, int httpport) {
+    private File loadByHTTP(File file, int loading, String servlet, String ip, int httpport) {
         try {
-            //URL url = new URL("http://"+ip+":"+httpport+"/WebAppName/ServletName?opt=tcp");
+            //URL url = new URL("http://"+ip+":"+httpport+"/WebAppName/"+servlet+"?opt=tcp");
             URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=http");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setConnectTimeout(5000);
@@ -147,7 +149,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         ArrayList<Rol> rolls = new ArrayList();
         ArrayList<Politica> politics = new ArrayList();
         ArrayList<TipoEvento> eventTypes = new ArrayList();
-        loading = 50;
+        ArrayList<Medidor> meters = new ArrayList();
         session.setAttribute("loading", 50);
 
         while ((line = reader.readLine()) != null) {
@@ -159,11 +161,6 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
             if (line.split(";")[0].equals("User")) {
                 Usuario u = new Usuario();
                 u.setVccoduser(line.split(";")[1]);
-                if (loading < 50) {
-                    session.setAttribute("loading", loading++);
-                } else {
-                    session.setAttribute("loading", 50);
-                }
                 u.setVcnombre(line.split(";")[2]);
                 u.setVcpass(line.split(";")[3]);
                 u.setVcroll(line.split(";")[4]);
@@ -200,6 +197,14 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
                 tp.setLaaplicamed(line.split(";")[4].equals("Si") ? "true" : "false");
                 eventTypes.add(tp);
             }
+            
+            if (line.split(";")[0].equals("Meter")) {
+                Medidor m = new Medidor();
+                m.setVcserie(line.split(";")[1]);
+                m.setNdir(Integer.parseInt(line.split(";")[2]));
+                m.setLestado(line.split(";")[3]);
+                meters.add(m);
+            }
         }
 
         file.delete();
@@ -207,10 +212,12 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         ac.eraseTable("rolls");
         ac.eraseTable("politics");
         ac.eraseTable("eventTypes");
+        ac.eraseTable("meters");
         ac.reloadUsers(users);
         ac.reloadRolls(rolls);
         ac.reloadPolitics(politics);
         ac.reloadEventTypes(eventTypes);
+        ac.reloadMeters(meters);
     }
 
     @Override

@@ -26,10 +26,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">Consulta de Medidores</th>
+                        <th colspan="3">Consulta de Medidores</th>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <s:form theme="simple" action="/SearchMeters">
                                 Serial: <s:textfield theme="simple" name="serie"/>
                                 Direcci&oacute;n: <s:textfield theme="simple" name="dir"/>
@@ -40,11 +40,12 @@
                     <tr>
                         <th>Serial</th>
                         <th>Direcci&oacute;n</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div id="paging">
                                 <ul>
                                     <li>
@@ -133,6 +134,7 @@
                     <tr class="alt">
                         <td><%=l.getVcserie()%></td>
                         <td><%=l.getNdir()%></td>
+                        <td><%=l.getLestado()%></td>
                     </tr>
                     <%
                     } else {
@@ -140,6 +142,7 @@
                     <tr>
                         <td><%=l.getVcserie()%></td>
                         <td><%=l.getNdir()%></td>
+                        <td><%=l.getLestado()%></td>
                     </tr>
                     <%
                             }

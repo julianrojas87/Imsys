@@ -15,6 +15,7 @@ public class Medidor implements Serializable{
     
     private String vcserie;
     private int ndir;
+    private String lestado;
 
     public String getVcserie() {
         return vcserie;
@@ -30,5 +31,13 @@ public class Medidor implements Serializable{
 
     public void setNdir(int ndir) {
         this.ndir = ndir;
+    }
+
+    public String getLestado() {
+        return lestado;
+    }
+
+    public void setLestado(String lestado) {
+        this.lestado = lestado;
     }
 }

@@ -49,7 +49,9 @@ public class ParametrosDao {
                 params.setVcparidad(result.getString("VCPARIDAD"));
                 params.setNbitsparada(result.getInt("NBITSPARADA"));
                 params.setVccodific(result.getString("VCCODIFIC"));
-                params.setVccoordgps(result.getString("VCCOORDGPS"));
+                params.setNlatitud(result.getInt("NLATITUD"));
+                params.setNlongitud(result.getInt("NLONGITUD"));
+                params.setVcservlet(result.getString("VCSERVLET"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(ParametrosDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,7 +88,7 @@ public class ParametrosDao {
             String sql = "INSERT INTO M_PARAMSYS ( VCNIT, VCCODSUBEST, VCCODCTO, "
                     + "VCCODTRANS, VCCODCAJA, VCIPLOCAL, VCIPWAN, LRED, NPTOHTTP, NPTOSOCKET, NFRECDESCARGA, "
                     + "VCDELTAINICMMTO, VCPUERTO, NVELOCIDAD, NDATABITS, VCPARIDAD, NBITSPARADA, VCCODIFIC, "
-                    + "VCCOORDGPS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                    + "NLATITUD, NLONGITUD, VCSERVLET) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
             
             PreparedStatement stmt = cx.prepareStatement(sql);
             
@@ -108,7 +110,9 @@ public class ParametrosDao {
             stmt.setString(16, params.getVcparidad());
             stmt.setString(17, Integer.toString(params.getNbitsparada()));
             stmt.setString(18, params.getVccodific());
-            stmt.setString(19, params.getVccoordgps());
+            stmt.setString(19, Float.toString(params.getNlatitud()));
+            stmt.setString(20, Float.toString(params.getNlongitud()));
+            stmt.setString(21, params.getVcservlet());
             
             stmt.executeUpdate();
             

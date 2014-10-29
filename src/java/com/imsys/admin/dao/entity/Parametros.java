@@ -31,7 +31,9 @@ public class Parametros implements Serializable{
     private int nptosocket;
     private int lred;
     private String vcdeltainicmmto;
-    private String vccoordgps;
+    private float nlatitud;
+    private float nlongitud;
+    private String vcservlet;
 
     public String getVcnit() {
         return vcnit;
@@ -177,11 +179,27 @@ public class Parametros implements Serializable{
         this.vcdeltainicmmto = vcdeltainicmmto;
     }
 
-    public String getVccoordgps() {
-        return vccoordgps;
+    public float getNlatitud() {
+        return nlatitud;
     }
 
-    public void setVccoordgps(String vccoordgps) {
-        this.vccoordgps = vccoordgps;
+    public void setNlatitud(float nlatitud) {
+        this.nlatitud = nlatitud;
+    }
+
+    public float getNlongitud() {
+        return nlongitud;
+    }
+
+    public void setNlongitud(float nlongitud) {
+        this.nlongitud = nlongitud;
+    }
+
+    public String getVcservlet() {
+        return vcservlet;
+    }
+
+    public void setVcservlet(String vcservlet) {
+        this.vcservlet = vcservlet;
     }
 }

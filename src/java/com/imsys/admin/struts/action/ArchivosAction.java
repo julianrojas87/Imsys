@@ -11,6 +11,7 @@ import com.imsys.admin.dao.entity.Parametros;
 import com.imsys.admin.dao.entity.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,7 +34,8 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
     private String codcaja;
     private String diriploc;
     private String diripwan;
-    private String tipored;
+    private boolean wan;
+    private boolean lan;
     private String ptohttp;
     private String ptosocket;
     private String freclec;
@@ -44,7 +46,13 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
     private String paridad;
     private String bitsparada;
     private String codific;
-    private String gps;
+    private String latitud;
+    private String longitud;
+    private String servlet;
+    private List<String> speeds = Arrays.asList("1200", "2400", "4800", "9600", "14400", "19200", "28800", "33600");
+    private List<String> databits = Arrays.asList("5", "7", "8");
+    private List<String> stopbits = Arrays.asList("1", "2");
+    private List<String> parity = Arrays.asList("None", "Odd", "Even");
 
     public String displaySetup() {
         AdminControl ac = new AdminControl();
@@ -56,7 +64,6 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         this.setCodcaja(params.getVccodcaja());
         this.setDiriploc(params.getVciplocal());
         this.setDiripwan(params.getVcipwan());
-        this.setTipored(Integer.toString(params.getLred()));
         this.setPtohttp(Integer.toString(params.getNptohttp()));
         this.setPtosocket(Integer.toString(params.getNptosocket()));
         this.setFreclec(Integer.toString(params.getNfrecdescarga()));
@@ -67,7 +74,14 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         this.setParidad(params.getVcparidad());
         this.setBitsparada(Integer.toString(params.getNbitsparada()));
         this.setCodific(params.getVccodific());
-        this.setGps(params.getVccoordgps());
+        this.setLatitud(Float.toString(params.getNlatitud()));
+        this.setLongitud(Float.toString(params.getNlongitud()));
+        this.setServlet(params.getVcservlet());
+        if (params.getLred() == 0) {
+            this.setLan(true);
+        } else {
+            this.setWan(true);
+        }
 
         Usuario u = (Usuario) session.getAttribute("userObject");
         ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó los parámetros "
@@ -90,12 +104,24 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         params.setVcpuerto(this.getPtoserial());
         params.setVcparidad(this.getParidad());
         params.setVccodific(this.getCodific());
-        params.setVccoordgps(this.getGps());
-        
+        params.setVcservlet(this.getServlet());
+
+        if (this.isLan() && this.isWan()) {
+            session.setAttribute("msj", "Elija sólamente un Tipo de Red");
+            session.setAttribute("mainopt", "setup");
+            return SUCCESS;
+        } else if (this.isLan()){
+            params.setLred(0);
+        } else if (this.isWan()){
+            params.setLred(1);
+        } else {
+            session.setAttribute("msj", "Elija al menos un Tipo de Red");
+            session.setAttribute("mainopt", "setup");
+            return SUCCESS;
+        }
+
         int i = 0;
         try {
-            params.setLred(Integer.parseInt(this.getTipored()));
-            i++;
             params.setNptohttp(Integer.parseInt(this.getPtohttp()));
             i++;
             params.setNptosocket(Integer.parseInt(this.getPtosocket()));
@@ -107,27 +133,34 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
             params.setNdatabits(Integer.parseInt(this.getBitsdatos()));
             i++;
             params.setNbitsparada(Integer.parseInt(this.getBitsparada()));
+            i++;
+            params.setNlatitud(Float.parseFloat((this.getLatitud())));
+            i++;
+            params.setNlongitud(Float.parseFloat(this.getLongitud()));
         } catch (NumberFormatException e) {
             if (i == 0) {
-                session.setAttribute("msj", "El Parámetro Tipo de Red solo acepta valores numéricos");
-            }
-            if (i == 1) {
                 session.setAttribute("msj", "El Parámetro Puerto HTTP solo acepta valores numéricos");
             }
-            if (i == 2) {
+            if (i == 1) {
                 session.setAttribute("msj", "El Parámetro Puerto Socket solo acepta valores numéricos");
             }
-            if (i == 3) {
+            if (i == 2) {
                 session.setAttribute("msj", "El Parámetro Frecuencia de Lectura solo acepta valores numéricos");
             }
-            if (i == 4) {
+            if (i == 3) {
                 session.setAttribute("msj", "El Parámetro Velocidad solo acepta valores numéricos");
             }
-            if (i == 5) {
+            if (i == 4) {
                 session.setAttribute("msj", "El Parámetro Bits de Datos solo acepta valores numéricos");
             }
-            if (i == 6) {
+            if (i == 5) {
                 session.setAttribute("msj", "El Parámetro Bits de Parada solo acepta valores numéricos");
+            }
+            if (i == 6) {
+                session.setAttribute("msj", "El Parámetro Latitud solo acepta valores numéricos");
+            }
+            if (i == 7) {
+                session.setAttribute("msj", "El Parámetro Longitud solo acepta valores numéricos");
             }
             session.setAttribute("mainopt", "setup");
             return SUCCESS;
@@ -396,14 +429,6 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         this.diripwan = diripwan;
     }
 
-    public String getTipored() {
-        return tipored;
-    }
-
-    public void setTipored(String tipored) {
-        this.tipored = tipored;
-    }
-
     public String getPtohttp() {
         return ptohttp;
     }
@@ -484,11 +509,75 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         this.codific = codific;
     }
 
-    public String getGps() {
-        return gps;
+    public String getLatitud() {
+        return latitud;
     }
 
-    public void setGps(String gps) {
-        this.gps = gps;
+    public void setLatitud(String latitud) {
+        this.latitud = latitud;
+    }
+
+    public String getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(String longitud) {
+        this.longitud = longitud;
+    }
+
+    public boolean isWan() {
+        return wan;
+    }
+
+    public void setWan(boolean wan) {
+        this.wan = wan;
+    }
+
+    public boolean isLan() {
+        return lan;
+    }
+
+    public void setLan(boolean lan) {
+        this.lan = lan;
+    }
+
+    public List<String> getSpeeds() {
+        return speeds;
+    }
+
+    public void setSpeeds(List<String> speeds) {
+        this.speeds = speeds;
+    }
+
+    public List<String> getDatabits() {
+        return databits;
+    }
+
+    public void setDatabits(List<String> databits) {
+        this.databits = databits;
+    }
+
+    public List<String> getStopbits() {
+        return stopbits;
+    }
+
+    public void setStopbits(List<String> stopbits) {
+        this.stopbits = stopbits;
+    }
+
+    public List<String> getParity() {
+        return parity;
+    }
+
+    public void setParity(List<String> parity) {
+        this.parity = parity;
+    }
+
+    public String getServlet() {
+        return servlet;
+    }
+
+    public void setServlet(String servlet) {
+        this.servlet = servlet;
     }
 }
