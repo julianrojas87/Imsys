@@ -469,19 +469,19 @@ public class AdminControl {
         try {
             Class.forName("org.sqlite.JDBC");
             Properties props = new Properties();
-            props.load(new FileInputStream(new File(System.getProperty("user.home") + "/database.cfg")));
+            props.load(new FileInputStream("Metrolink/ImsysMobileDB.cfg"));
             cx = DriverManager.getConnection(props.getProperty("DATA_BASE_LOCATION") + props.getProperty("DATA_BASE_NAME"));
         } catch (FileNotFoundException ex) {
 
             try {
-                PrintWriter writer = new PrintWriter(System.getProperty("user.home") + "/database.cfg");
-                writer.println("DATA_BASE_NAME=ImsysMobileDB");
-                writer.println("DATA_BASE_LOCATION=jdbc:sqlite:/"+System.getProperty("user.home")+"/");
+                PrintWriter writer = new PrintWriter("Metrolink/ImsysMobileDB.cfg");
+                writer.println("DATA_BASE_NAME=ImsysMobile.db");
+                writer.println("DATA_BASE_LOCATION=jdbc:sqlite:/Metrolink/");
                 writer.close();
                 
                 Class.forName("org.sqlite.JDBC");
                 Properties props = new Properties();
-                props.load(new FileInputStream(new File(System.getProperty("user.home") + "/database.cfg")));
+                props.load(new FileInputStream(new File("Metrolink/ImsysMobileDB.cfg")));
                 cx = DriverManager.getConnection(props.getProperty("DATA_BASE_LOCATION") + props.getProperty("DATA_BASE_NAME"));
             } catch (ClassNotFoundException | IOException | SQLException ex1) {
                 Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex1);

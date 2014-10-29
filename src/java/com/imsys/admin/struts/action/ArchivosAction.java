@@ -49,6 +49,7 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
     private String latitud;
     private String longitud;
     private String servlet;
+    private List<String> encodes = Arrays.asList("rtu", "ascii");
     private List<String> speeds = Arrays.asList("1200", "2400", "4800", "9600", "14400", "19200", "28800", "33600");
     private List<String> databits = Arrays.asList("5", "7", "8");
     private List<String> stopbits = Arrays.asList("1", "2");
@@ -567,6 +568,14 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
 
     public List<String> getParity() {
         return parity;
+    }
+
+    public List<String> getEncodes() {
+        return encodes;
+    }
+
+    public void setEncodes(List<String> encodes) {
+        this.encodes = encodes;
     }
 
     public void setParity(List<String> parity) {

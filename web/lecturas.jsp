@@ -46,14 +46,14 @@
                         <th>Fecha</th>
                         <th>ID Medidor</th>
                         <th>Serial de Medidor</th>
-                        <th>Voltaje</th>
-                        <th>Corriente</th>
-                        <th>Potencia Activa</th>
-                        <th>Potencia Reactiva</th>
-                        <th>Potencia Aparente</th>
+                        <th>Voltaje (V)</th>
+                        <th>Corriente (A)</th>
+                        <th>Potencia Activa (W)</th>
+                        <th>Potencia Reactiva (Var)</th>
+                        <th>Potencia Aparente (Va)</th>
                         <th>Factor Potencia</th>
-                        <th>Energ&iacute;a Activa</th>
-                        <th>Energ&iacute;a Reactiva</th>
+                        <th>Energ&iacute;a Activa (kWh)</th>
+                        <th>Energ&iacute;a Reactiva (kVarh)</th>
                         <th>Energ&iacute;a Activa Calculada</th>
                         <th>Energ&iacute;a Reactiva Calculada</th>
                     </tr>

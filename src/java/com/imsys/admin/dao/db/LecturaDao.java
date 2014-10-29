@@ -34,7 +34,7 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -45,7 +45,7 @@ public class LecturaDao {
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
                 lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
-                lec.setLenviado(result.getString("LENVIADO"));
+                lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
             }
@@ -78,7 +78,7 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -89,7 +89,7 @@ public class LecturaDao {
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
                 lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
-                lec.setLenviado(result.getString("LENVIADO"));
+                lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
             }
@@ -122,7 +122,7 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -133,7 +133,7 @@ public class LecturaDao {
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
                 lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
-                lec.setLenviado(result.getString("LENVIADO"));
+                lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
             }
@@ -166,7 +166,7 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getString("VCIDMEDIDOR"));
+                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -177,7 +177,7 @@ public class LecturaDao {
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
                 lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
-                lec.setLenviado(result.getString("LENVIADO"));
+                lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
             }

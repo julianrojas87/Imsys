@@ -63,7 +63,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         String ipaddress = params.getLred() == 0 ? params.getVciplocal() : params.getVcipwan();
         File retrievedFile = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
 
-        retrievedFile = this.loadByTCP(retrievedFile, loading, params.getVcservlet(), ipaddress, 
+        retrievedFile = this.loadByTCP(retrievedFile, loading, params.getVcservlet(), ipaddress,
                 params.getNptohttp(), params.getNptosocket());
         //retrievedFile = this.loadByHTTP(retrievedFile, loading, params.getVcservlet(), ipaddress, params.getNptohttp());
         this.processRetrievedFile(retrievedFile, loading, ac);
@@ -72,21 +72,21 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         session.setAttribute("msj", "Proceso completado!!");
         session.setAttribute("mainopt", "infoLoad");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] actualizó la información desde el Sistema Central", 
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] actualizó la información desde el Sistema Central",
                 u.getVccoduser(), "Main/Procesos/CargaSysAdmin");
         return SUCCESS;
     }
 
-    private File loadByTCP(File file, int loading, String servlet, String ip, int httpport, int socketport) 
+    private File loadByTCP(File file, int loading, String servlet, String ip, int httpport, int socketport)
             throws MalformedURLException, IOException {
-        //URL url = new URL("http://"+ip+":"+httpport+"/WebAppName/"+servlet+"?opt=tcp");
-        URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=tcp");
+        URL url = new URL("http://" + ip + ":" + httpport + "/imsservlet01/" + servlet + "?opcion=22&type=tcp&port=" + socketport);
+        //URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=tcp");
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setConnectTimeout(5000);
 
         if (urlConnection.getResponseMessage().equals("OK")) {
-            //Socket socket = new Socket(ip, socketport);
-            Socket socket = new Socket("127.0.0.1", 8000);
+            Socket socket = new Socket(ip, socketport);
+            //Socket socket = new Socket("127.0.0.1", 8000);
             InputStream is = socket.getInputStream();
             OutputStream output = new FileOutputStream(file);
             BufferedOutputStream bos = new BufferedOutputStream(output);
@@ -111,8 +111,8 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
 
     private File loadByHTTP(File file, int loading, String servlet, String ip, int httpport) {
         try {
-            //URL url = new URL("http://"+ip+":"+httpport+"/WebAppName/"+servlet+"?opt=tcp");
-            URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=http");
+            URL url = new URL("http://" + ip + ":" + httpport + "/imsservlet01/" + servlet + "?opcion=22&type=http");
+            //URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=http");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setConnectTimeout(5000);
             InputStream input = urlConnection.getInputStream();
@@ -197,7 +197,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
                 tp.setLaaplicamed(line.split(";")[4].equals("Si") ? "true" : "false");
                 eventTypes.add(tp);
             }
-            
+
             if (line.split(";")[0].equals("Meter")) {
                 Medidor m = new Medidor();
                 m.setVcserie(line.split(";")[1]);

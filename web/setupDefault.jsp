@@ -41,7 +41,7 @@
                                 Frecuencia de Lectura (minutos): <s:textfield name="freclec"/><br>
                                 Delta de Mantenimiento (minutos): <s:textfield name="deltaman"/><br>
                                 Puerto Serial: <s:textfield name="ptoserial"/><br>
-                                Codificaci&oacute;n: <s:textfield name="codific"/><br> 
+                                Codificaci&oacute;n: <s:select cssStyle="WIDTH:153px" name="codific" list="encodes"/><br>
                                 Velocidad (Kbps): <s:select cssStyle="WIDTH:153px" name="velocidad" list="speeds"/><br> 
                                 Bits de Datos: <s:select cssStyle="WIDTH:153px" name="bitsdatos" list="databits"/><br> 
                                 Paridad: <s:select cssStyle="WIDTH:153px" name="paridad" list="parity"/><br>

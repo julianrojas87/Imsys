@@ -125,7 +125,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             if (displecs.size() > 0) {
                 ArrayList<Lectura> temp = new ArrayList();
                 for (Lectura l : displecs) {
-                    if (l.getVcidmedidor().equals(this.getIdmedidor())) {
+                    if (l.getVcidmedidor() == Integer.parseInt(this.getIdmedidor())) {
                         temp.add(l);
                     }
                 }
