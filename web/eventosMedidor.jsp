@@ -13,9 +13,9 @@
 <!DOCTYPE html>
 <%
     List<EventoMedidor> displecs = (List<EventoMedidor>) session.getAttribute("eventosMedidor");
-    int total = (int) session.getAttribute("totalevem");
+    int total = ((Integer) session.getAttribute("totalevem")).intValue();
     int numBotones = (total / 10) + 1;
-    int actuallec = (int) session.getAttribute("actualevem");
+    int actuallec = ((Integer) session.getAttribute("actualevem")).intValue();
 %>
 <html>
     <head>
@@ -37,7 +37,7 @@
                                 Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="5" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
                                 C&oacute;digo Evento: <s:textfield theme="simple" name="code" size="5"/>
                                 Serial Medidor: <s:textfield theme="simple" name="serie" size="5"/>
-                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
+                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>

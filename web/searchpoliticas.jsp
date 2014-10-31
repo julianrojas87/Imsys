@@ -11,9 +11,9 @@
 <!DOCTYPE html>
 <%
     List<Politica> displecs = (List<Politica>) session.getAttribute("politicas");
-    int total = (int) session.getAttribute("totallecs");
+    int total = ((Integer) session.getAttribute("totallecs")).intValue();
     int numBotones = (total / 10) + 1;
-    int actuallec = (int) session.getAttribute("actuallec");
+    int actuallec = ((Integer) session.getAttribute("actuallec")).intValue();
 %>
 <html>
     <head>
@@ -31,7 +31,7 @@
                         <td colspan="6">
                             <s:form theme="simple" action="/SearchPoliticas">
                                 C&oacute;digo de Rol: <s:textfield theme="simple" name="code"/>
-                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
+                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>

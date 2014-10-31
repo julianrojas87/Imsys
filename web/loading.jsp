@@ -37,12 +37,17 @@
                     }
                     xmlObj.onreadystatechange = function () {
                         if (xmlObj.readyState == 4 && xmlObj.status == 200) {
-                            addValue = progressbar.val(xmlObj.responseText);
-                            $('.progress-value').html(xmlObj.responseText + '%');
-
-                            if (xmlObj.responseText == max) {
+                            if (xmlObj.responseText == '200') {
                                 clearInterval(refresh);
-                                location.reload();
+                                window.location.reload();
+                            } else {
+                                addValue = progressbar.val(xmlObj.responseText);
+                                $('.progress-value').html(xmlObj.responseText + '%');
+
+                                if (xmlObj.responseText == max) {
+                                    clearInterval(refresh);
+                                    location.reload();
+                                }
                             }
                         }
                     };

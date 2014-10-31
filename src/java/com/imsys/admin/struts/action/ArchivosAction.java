@@ -111,9 +111,9 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
             session.setAttribute("msj", "Elija sólamente un Tipo de Red");
             session.setAttribute("mainopt", "setup");
             return SUCCESS;
-        } else if (this.isLan()){
+        } else if (this.isLan()) {
             params.setLred(0);
-        } else if (this.isWan()){
+        } else if (this.isWan()) {
             params.setLred(1);
         } else {
             session.setAttribute("msj", "Elija al menos un Tipo de Red");
@@ -210,7 +210,7 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt * 10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
@@ -320,7 +320,7 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));

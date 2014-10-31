@@ -22,7 +22,7 @@ public class EventoMedidorDao {
     
     public ArrayList<EventoMedidor> listAll(Connection c) throws SQLException {
 
-        String sql = "SELECT * FROM MOV_EVEMEDIDOR ORDER BY DFECHAEVEMED ASC ";
+        String sql = "SELECT * FROM MOV_EVEMEDIDOR ORDER BY DFECHAEVEMED DESC ";
         ArrayList<EventoMedidor> results = new ArrayList();
         ResultSet result = null;
         PreparedStatement stm = null;

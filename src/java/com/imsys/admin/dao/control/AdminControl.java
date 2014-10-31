@@ -25,9 +25,11 @@ import com.imsys.admin.dao.entity.Politica;
 import com.imsys.admin.dao.entity.Rol;
 import com.imsys.admin.dao.entity.TipoEvento;
 import com.imsys.admin.dao.entity.Usuario;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -467,22 +469,24 @@ public class AdminControl {
 
     private void getConnection() {
         try {
-            Class.forName("org.sqlite.JDBC");
-            Properties props = new Properties();
-            props.load(new FileInputStream("Metrolink/ImsysMobileDB.cfg"));
-            cx = DriverManager.getConnection(props.getProperty("DATA_BASE_LOCATION") + props.getProperty("DATA_BASE_NAME"));
+            File ini = new File("/Metrolink/D113003/d113003.ini");
+            BufferedReader reader = new BufferedReader(new FileReader(ini));
+            String line = reader.readLine();
+            Class.forName(line.split(",")[0]);
+            //Class.forName("org.sqlite.JDBC");
+            //cx = DriverManager.getConnection("jdbc:sqlite:/home/julian/ImsysMobileDB");
+            cx = DriverManager.getConnection(line.split(",")[1]);
         } catch (FileNotFoundException ex) {
-
             try {
-                PrintWriter writer = new PrintWriter("Metrolink/ImsysMobileDB.cfg");
-                writer.println("DATA_BASE_NAME=ImsysMobile.db");
-                writer.println("DATA_BASE_LOCATION=jdbc:sqlite:/Metrolink/");
+                PrintWriter writer = new PrintWriter("/Metrolink/D113003/d113003.ini");
+                writer.println("org.sqlite.JDBC,jdbc:sqlite:/MetroLink/ImsysMobile.db");
                 writer.close();
-                
-                Class.forName("org.sqlite.JDBC");
-                Properties props = new Properties();
-                props.load(new FileInputStream(new File("Metrolink/ImsysMobileDB.cfg")));
-                cx = DriverManager.getConnection(props.getProperty("DATA_BASE_LOCATION") + props.getProperty("DATA_BASE_NAME"));
+
+                File ini = new File("/Metrolink/D113003/d113003.ini");
+                BufferedReader reader = new BufferedReader(new FileReader(ini));
+                String line = reader.readLine();
+                Class.forName(line.split(",")[0]);
+                cx = DriverManager.getConnection(line.split(",")[1]);
             } catch (ClassNotFoundException | IOException | SQLException ex1) {
                 Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex1);
             }

@@ -13,9 +13,9 @@
 <!DOCTYPE html>
 <%
     List<EventoCaja> dispeventsc = (List<EventoCaja>) session.getAttribute("dispeventsc");
-    int total = (int) session.getAttribute("totalevec");
+    int total = ((Integer) session.getAttribute("totalevec")).intValue();
     int numBotones = (total / 10) + 1;
-    int actualevec = (int) session.getAttribute("actualevec");
+    int actualevec = ((Integer) session.getAttribute("actualevec")).intValue();
 %>
 <html>
     <head>
@@ -36,7 +36,7 @@
                                 FFecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
                                 Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
                                 C&oacute;digo Evento: <s:textfield theme="simple" name="code"/>
-                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
+                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>

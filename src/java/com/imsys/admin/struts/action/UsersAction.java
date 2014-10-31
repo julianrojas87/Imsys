@@ -58,7 +58,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware {
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
@@ -121,7 +121,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware {
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
@@ -176,7 +176,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware {
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
@@ -245,7 +245,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware {
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
@@ -300,7 +300,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware {
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));
@@ -363,7 +363,7 @@ public class UsersAction extends ActionSupport implements ServletRequestAware {
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));

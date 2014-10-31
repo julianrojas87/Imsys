@@ -33,7 +33,7 @@
                             </h3>
                             <h4>
                                 <br>El Formato del archivo descargado es el siguiente:
-                                <br>Fecha;ID Medidor;Serial;Voltaje;Corriente;Pot Activa;Pot Reactiva;Pot Aparente;Factor Pot;Ene Activa;Ene Reactiva;Ene Act Calc;Ene React Calc
+                                <br>Fecha;ID Medidor;Serial;Voltaje;Corriente;Pot Activa;Pot Reactiva;Pot Aparente;Factor Pot;Ene Activa;Ene Reactiva;Ene Act Calc;Ene React Calc;Enviado
                             </h4>
                             <s:form theme="simple" action="/RetrieveInfo">
                                 Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>

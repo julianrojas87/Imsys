@@ -13,9 +13,9 @@
 <!DOCTYPE html>
 <%
     List<Lectura> displecs = (List<Lectura>) session.getAttribute("displecs");
-    int total = (int) session.getAttribute("totallecs");
+    int total = ((Integer) session.getAttribute("totallecs")).intValue();
     int numBotones = (total / 10) + 1;
-    int actuallec = (int) session.getAttribute("actuallec");
+    int actuallec = ((Integer) session.getAttribute("actuallec")).intValue();
 %>
 <html>
     <head>
@@ -37,7 +37,7 @@
                                 Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
                                 ID Medidor: <s:textfield theme="simple" name="idmedidor" size="10"/>
                                 Serial Medidor: <s:textfield theme="simple" name="serie" size="10"/>
-                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
+                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>

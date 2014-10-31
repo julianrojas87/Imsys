@@ -42,12 +42,13 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
                 displecs.add(l);
             }
         }
+
         session.setAttribute("lecturas", displecs);
         session.setAttribute("totallecs", lecs.size());
         session.setAttribute("actuallec", 1);
         session.setAttribute("mainopt", "lecturas");
         Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] consultó las lecturas.", u.getVccoduser(), "Main/Consultas/Lecturas");
+        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] consultó las lecturas.", u.getVccoduser(), "Main/Consultas/Lecturas");
         return SUCCESS;
     }
 
@@ -61,8 +62,8 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
-            for (int i = lim; i < lim + 11; i++) {
+            int lim = 10 * (opt - 1);
+            for (int i = lim; i < lim + 10; i++) {
                 try {
                     displecs.add(lecs.get(i));
                 } catch (IndexOutOfBoundsException e) {
@@ -99,7 +100,12 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             if (fin.after(ini) || fin.equals(ini)) {
                 ArrayList<Lectura> all = ac.getLecturas();
                 for (Lectura l : all) {
-                    Date ld = format.parse(l.getTsfecha());
+                    String day = l.getTsfecha().split(" ")[0].split("/")[2];
+                    String month = l.getTsfecha().split(" ")[0].split("/")[1];
+                    String year = l.getTsfecha().split(" ")[0].split("/")[0];
+                    
+                    String ld1 = day + "/" + month + "/" + year;
+                    Date ld = format.parse(ld1);
                     if ((ld.after(ini) || ld.equals(ini)) && (ld.before(fin) || ld.equals(fin))) {
                         displecs.add(l);
                     }
@@ -187,7 +193,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt * 10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     displecs.add(lecs.get(i));

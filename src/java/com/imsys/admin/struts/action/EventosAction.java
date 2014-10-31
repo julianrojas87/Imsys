@@ -85,7 +85,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     dispeventsc.add(eventc.get(i));
@@ -120,7 +120,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     dispeventsm.add(eventm.get(i));
@@ -158,7 +158,12 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (fin.after(ini) || fin.equals(ini)) {
                 ArrayList<EventoCaja> all = ac.getEventc();
                 for (EventoCaja l : all) {
-                    Date ld = format.parse(l.getDfechaeve());
+                    String day = l.getDfechaeve().split(" ")[0].split("/")[2];
+                    String month = l.getDfechaeve().split(" ")[0].split("/")[1];
+                    String year = l.getDfechaeve().split(" ")[0].split("/")[0];
+                    
+                    String ld1 = day + "/" + month + "/" + year;
+                    Date ld = format.parse(ld1);
                     if ((ld.after(ini) || ld.equals(ini)) && (ld.before(fin) || ld.equals(fin))) {
                         dispeventsc.add(l);
                     }
@@ -236,7 +241,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     dispeventsc.add(eventsc.get(i));
@@ -274,7 +279,12 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (fin.after(ini) || fin.equals(ini)) {
                 ArrayList<EventoMedidor> all = ac.getEventm();
                 for (EventoMedidor l : all) {
-                    Date ld = format.parse(l.getDfechaevemed());
+                    String day = l.getDfechaevemed().split(" ")[0].split("/")[2];
+                    String month = l.getDfechaevemed().split(" ")[0].split("/")[1];
+                    String year = l.getDfechaevemed().split(" ")[0].split("/")[0];
+                    
+                    String ld1 = day + "/" + month + "/" + year;
+                    Date ld = format.parse(ld1);
                     if ((ld.after(ini) || ld.equals(ini)) && (ld.before(fin) || ld.equals(fin))) {
                         dispeventsm.add(l);
                     }
@@ -366,7 +376,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     dispeventsm.add(eventsm.get(i));
@@ -422,7 +432,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     dispeventsc.add(eventc.get(i));
@@ -492,7 +502,7 @@ public class EventosAction extends ActionSupport implements ServletRequestAware 
             if (opt > total) {
                 opt--;
             }
-            int lim = 11 * (opt - 1) - 1;
+            int lim = (opt*10) - 10;
             for (int i = lim; i < lim + 11; i++) {
                 try {
                     dispeventsc.add(eventc.get(i));

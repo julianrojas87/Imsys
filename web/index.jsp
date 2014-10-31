@@ -32,7 +32,7 @@
                 <tr>
                     <td colspan="2">
                         <div align="center">
-                            <h1>Web App de Sistema Embebido</h1>
+                            <h1>IMSYS Mobile</h1>
                         </div>
                         <h5 align="center"> Version 1.0</h5>
                     </td>

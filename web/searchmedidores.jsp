@@ -11,9 +11,9 @@
 <!DOCTYPE html>
 <%
     List<Medidor> displecs = (List<Medidor>) session.getAttribute("medidores");
-    int total = (int) session.getAttribute("totallecs");
+    int total = ((Integer) session.getAttribute("totallecs")).intValue();
     int numBotones = (total / 10) + 1;
-    int actuallec = (int) session.getAttribute("actuallec");
+    int actuallec = ((Integer) session.getAttribute("actuallec")).intValue();
 %>
 <html>
     <head>
@@ -25,25 +25,26 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="2">Consulta de Medidores</th>
+                        <th colspan="3">Consulta de Medidores</th>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <s:form theme="simple" action="/SearchMeters">
                                 Serial: <s:textfield theme="simple" name="serie"/>
                                 Direcci&oacute;n: <s:textfield theme="simple" name="dir"/>
-                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
+                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>
                     <tr>
                         <th>Serial</th>
                         <th>Direcci&oacute;n</th>
+                        <th>Estado</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="2">
+                        <td colspan="3">
                             <div id="paging">
                                 <ul>
                                     <li>
@@ -132,6 +133,7 @@
                     <tr class="alt">
                         <td><%=l.getVcserie()%></td>
                         <td><%=l.getNdir()%></td>
+                        <td><%=l.getLestado()%></td>
                     </tr>
                     <%
                     } else {
@@ -139,6 +141,7 @@
                     <tr>
                         <td><%=l.getVcserie()%></td>
                         <td><%=l.getNdir()%></td>
+                        <td><%=l.getLestado()%></td>
                     </tr>
                     <%
                             }

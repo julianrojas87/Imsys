@@ -22,7 +22,7 @@ public class LecturaDao {
 
     public ArrayList<Lectura> listAll(Connection c) throws SQLException {
 
-        String sql = "SELECT * FROM MOV_LECTURAS ORDER BY TSFECHA ASC ";
+        String sql = "SELECT * FROM MOV_LECTURAS ORDER BY TSFECHA DESC ";
         ArrayList<Lectura> results = new ArrayList();
         ResultSet result = null;
         PreparedStatement stm = null;
@@ -64,7 +64,7 @@ public class LecturaDao {
     }
 
     public ArrayList<Lectura> getById(Connection c, String id) throws SQLException {
-        String sql = "SELECT * FROM MOV_LECTURAS WHERE (VCIDMEDIDOR = ? ) ";
+        String sql = "SELECT * FROM MOV_LECTURAS WHERE (NIDMEDIDOR = ? ) ";
         ArrayList<Lectura> results = new ArrayList();
         PreparedStatement stmt = null;
         ResultSet result = null;

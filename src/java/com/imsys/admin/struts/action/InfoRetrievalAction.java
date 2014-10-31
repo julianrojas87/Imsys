@@ -53,7 +53,12 @@ public class InfoRetrievalAction extends ActionSupport implements ServletRequest
             if (fin.after(ini) || fin.equals(ini)) {
                 ArrayList<Lectura> all = ac.getLecturas();
                 for (Lectura l : all) {
-                    Date ld = format.parse(l.getTsfecha());
+                    String day = l.getTsfecha().split(" ")[0].split("/")[2];
+                    String month = l.getTsfecha().split(" ")[0].split("/")[1];
+                    String year = l.getTsfecha().split(" ")[0].split("/")[0];
+                    
+                    String ld1 = day + "/" + month + "/" + year;
+                    Date ld = format.parse(ld1);
                     if ((ld.after(ini) || ld.equals(ini)) && (ld.before(fin) || ld.equals(fin))) {
                         downlecs.add(l);
                     }
@@ -72,16 +77,16 @@ public class InfoRetrievalAction extends ActionSupport implements ServletRequest
         }
 
         PrintWriter writer = new PrintWriter(System.getProperty("user.home") + "/backup.txt");
-        writer.println("|   Fecha  |ID Medidor|  Serial  |Voltaje|Corriente|Pot Activa|Pot Reactiva|"
-                + "Pot Aparente|Factor Pot|Ene Activa|Ene Reactiva|Ene Act Calc|Ene React Calc|");
-        writer.println("|----------|----------|----------|-------|---------|----------|------------|------------|----------|"
-                + "----------|------------|------------|--------------|");
+        //writer.println("|   Fecha  |ID Medidor|  Serial  |Voltaje|Corriente|Pot Activa|Pot Reactiva|"
+        //        + "Pot Aparente|Factor Pot|Ene Activa|Ene Reactiva|Ene Act Calc|Ene React Calc|");
+        //writer.println("|----------|----------|----------|-------|---------|----------|------------|------------|----------|"
+        //        + "----------|------------|------------|--------------|");
         for (Lectura l : downlecs) {
-            /*writer.println(l.getTsfecha() + ";" + l.getVcidmedidor() + ";" + l.getVcserie() + ";" + l.getVcvoltaje() + ";"
+            writer.println(l.getTsfecha() + ";" + l.getVcidmedidor() + ";" + l.getVcserie() + ";" + l.getVcvoltaje() + ";"
                     + l.getVccorriente() + ";" + l.getVcpotactiva() + ";" + l.getVcpotreactiva() + ";" + l.getVcpotaparente() + ";"
                     + l.getVcfactorpot() + ";" + l.getVceneactiva() + ";" + l.getVcpotreactiva() + ";" + l.getVccalceneact() + ";"
-                    + l.getVccalcenereact());*/
-            writer.println("|" + String.format("%-10s", l.getTsfecha()) + "|" + String.format("%-10s", l.getVcidmedidor()) + "|"
+                    + l.getVccalcenereact() + ";" + l.getLenviado());
+            /*writer.println("|" + String.format("%-10s", l.getTsfecha()) + "|" + String.format("%-10s", l.getVcidmedidor()) + "|"
                     + String.format("%-10s", l.getVcserie()) + "|" + String.format("%-7s", l.getVcvoltaje()) + "|"
                     + String.format("%-9s", l.getVccorriente()) + "|" + String.format("%-10s", l.getVcpotactiva()) + "|"
                     + String.format("%-12s", l.getVcpotreactiva()) + "|" + String.format("%-12s", l.getVcpotaparente()) + "|"
@@ -89,7 +94,7 @@ public class InfoRetrievalAction extends ActionSupport implements ServletRequest
                     + String.format("%-12s", l.getVcenereactiva()) + "|" + String.format("%-12s", l.getVccalceneact()) + "|"
                     + String.format("%-14s", l.getVccalcenereact()) + "|");
             writer.println("|----------|----------|----------|-------|---------|----------|------------|------------|----------|"
-                    + "----------|------------|------------|--------------|");
+                    + "----------|------------|------------|--------------|");*/
         }
         writer.close();
         File downloadble = new File(System.getProperty("user.home") + "/backup.txt");

@@ -12,9 +12,9 @@
 <!DOCTYPE html>
 <%
     List<TipoEvento> displecs = (List<TipoEvento>) session.getAttribute("tipoEventos");
-    int total = (int) session.getAttribute("totalevec");
+    int total = ((Integer) session.getAttribute("totalevec")).intValue();
     int numBotones = (total / 10) + 1;
-    int actuallec = (int) session.getAttribute("actualevec");
+    int actuallec = ((Integer) session.getAttribute("actualevec")).intValue();
 %>
 <html>
     <head>
@@ -33,7 +33,7 @@
                         <td colspan="4">
                             <s:form theme="simple" action="/SearchTipoEvents">
                                 C&oacute;digo Evento: <s:textfield theme="simple" name="code"/>
-                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="/imsys/resources/img/buttons/search-icon.jpg"/>
+                                <s:submit theme="simple" width="25" height="25" type="image" value="search" src="resources/img/buttons/search-icon.jpg"/>
                             </s:form>
                         </td>
                     </tr>

@@ -23,9 +23,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -61,32 +63,51 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         AdminControl ac = new AdminControl();
         Parametros params = ac.getParams();
         String ipaddress = params.getLred() == 0 ? params.getVciplocal() : params.getVcipwan();
-        File retrievedFile = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
-
-        retrievedFile = this.loadByTCP(retrievedFile, loading, params.getVcservlet(), ipaddress,
+        File retrievedFile = null;
+        
+        try {
+            retrievedFile = this.loadByTCP(retrievedFile, loading, params.getVcservlet(), ipaddress,
                 params.getNptohttp(), params.getNptosocket());
-        //retrievedFile = this.loadByHTTP(retrievedFile, loading, params.getVcservlet(), ipaddress, params.getNptohttp());
-        this.processRetrievedFile(retrievedFile, loading, ac);
+        } catch (ConnectException ex) { 
+            session.setAttribute("msj", "El tiempo de conexion ha sido excedido, intente de nuevo");
+            session.setAttribute("loading", 200);
+            session.setAttribute("mainopt", "infoLoad");
+            return SUCCESS;
+        }
 
-        session.setAttribute("loading", 100);
-        session.setAttribute("msj", "Proceso completado!!");
-        session.setAttribute("mainopt", "infoLoad");
-        Usuario u = (Usuario) session.getAttribute("userObject");
-        ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] actualizó la información desde el Sistema Central",
-                u.getVccoduser(), "Main/Procesos/CargaSysAdmin");
-        return SUCCESS;
+        
+
+        //retrievedFile = this.loadByHTTP(retrievedFile, loading, params.getVcservlet(), ipaddress, params.getNptohttp());
+        if (retrievedFile != null) {
+            this.processRetrievedFile(retrievedFile, loading, ac);
+
+            session.setAttribute("loading", 100);
+            session.setAttribute("msj", "Proceso completado!!");
+            session.setAttribute("mainopt", "infoLoad");
+            Usuario u = (Usuario) session.getAttribute("userObject");
+            ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] actualizó la información desde el Sistema Central",
+                    u.getVccoduser(), "Main/Procesos/CargaSysAdmin");
+            return SUCCESS;
+        } else {
+            session.setAttribute("msj", "El puerto de conexión Socket no está disponible. Especifique un puerto diferente.");
+            session.setAttribute("loading", 200);
+            session.setAttribute("mainopt", "infoLoad");
+            return SUCCESS;
+        }
+
     }
 
     private File loadByTCP(File file, int loading, String servlet, String ip, int httpport, int socketport)
-            throws MalformedURLException, IOException {
+            throws MalformedURLException, IOException, SocketTimeoutException, ConnectException {
         URL url = new URL("http://" + ip + ":" + httpport + "/imsservlet01/" + servlet + "?opcion=22&type=tcp&port=" + socketport);
-        //URL url = new URL("http://localhost:8084/AdminSysTest/AdminServlet?opt=tcp");
+        //URL url = new URL("http://192.168.1.64:8084/AdminSysTest/AdminServlet?opt=tcp&port=" + socketport);
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setConnectTimeout(5000);
 
         if (urlConnection.getResponseMessage().equals("OK")) {
-            Socket socket = new Socket(ip, socketport);
-            //Socket socket = new Socket("127.0.0.1", 8000);
+            file = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
+            //Socket socket = new Socket(ip, socketport);
+            Socket socket = new Socket("192.168.1.64", socketport);
             InputStream is = socket.getInputStream();
             OutputStream output = new FileOutputStream(file);
             BufferedOutputStream bos = new BufferedOutputStream(output);
@@ -202,7 +223,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
                 Medidor m = new Medidor();
                 m.setVcserie(line.split(";")[1]);
                 m.setNdir(Integer.parseInt(line.split(";")[2]));
-                m.setLestado(line.split(";")[3]);
+                m.setLestado(line.split(";")[3].equals("activo") ? "true" : "false");
                 meters.add(m);
             }
         }
