@@ -67,11 +67,10 @@ public class AdminControl {
 
     public Usuario validateLogin(String user, String pass) {
         getConnection();
-        Usuario u = new Usuario();
-        Usuario us = new Usuario();
+        Usuario us = null;
         UsuarioDao uDao = new UsuarioDao();
         try {
-            u = uDao.loadbyName(cx, user);
+            Usuario u = uDao.loadbyName(cx, user);
             if (u != null) {
                 if (u.getVcpass().equals(pass)) {
                     us = u;
