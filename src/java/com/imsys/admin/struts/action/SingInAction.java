@@ -38,7 +38,7 @@ public class SingInAction extends ActionSupport implements ServletRequestAware{
                     session.setAttribute("msj", "El usuario se encuentra bloqueado. Por favor, comuníquese con el administrador.");
                     return INPUT;
                 } else{
-                    session.setAttribute("username", getUsername());
+                    session.setAttribute("username", u.getVcnombre());
                     session.setAttribute("userObject", u);
                     session.setAttribute("mainopt", "home");
                     ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] ingresó al sistema.", u.getVccoduser(), "Main/SingIn");

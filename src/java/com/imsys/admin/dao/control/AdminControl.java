@@ -70,7 +70,7 @@ public class AdminControl {
         Usuario us = null;
         UsuarioDao uDao = new UsuarioDao();
         try {
-            Usuario u = uDao.loadbyName(cx, user);
+            Usuario u = uDao.loadbyCode(cx, user);
             if (u != null) {
                 if (u.getVcpass().equals(pass)) {
                     us = u;
