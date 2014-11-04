@@ -82,10 +82,10 @@ public class InfoRetrievalAction extends ActionSupport implements ServletRequest
         //writer.println("|----------|----------|----------|-------|---------|----------|------------|------------|----------|"
         //        + "----------|------------|------------|--------------|");
         for (Lectura l : downlecs) {
-            writer.println(l.getTsfecha() + ";" + l.getVcidmedidor() + ";" + l.getVcserie() + ";" + l.getVcvoltaje() + ";"
-                    + l.getVccorriente() + ";" + l.getVcpotactiva() + ";" + l.getVcpotreactiva() + ";" + l.getVcpotaparente() + ";"
-                    + l.getVcfactorpot() + ";" + l.getVceneactiva() + ";" + l.getVcpotreactiva() + ";" + l.getVccalceneact() + ";"
-                    + l.getVccalcenereact() + ";" + l.getLenviado());
+            writer.println(l.getTsfecha() + ";" + l.getNidmedidor() + ";" + l.getVcfrecuencia() + ";" + l.getVcserie() + ";" + 
+                    l.getVcvoltaje() + ";" + l.getVccorriente() + ";" + l.getVcpotactiva() + ";" + l.getVcpotreactiva() + ";" + 
+                    l.getVcpotaparente() + ";" + l.getVcfactorpot() + ";" + l.getVceneactiva() + ";" + l.getVcpotreactiva() + ";" + 
+                    l.getVccalceneact() + ";" + l.getVccalcenereact() + ";" + l.getLenviado());
             /*writer.println("|" + String.format("%-10s", l.getTsfecha()) + "|" + String.format("%-10s", l.getVcidmedidor()) + "|"
                     + String.format("%-10s", l.getVcserie()) + "|" + String.format("%-7s", l.getVcvoltaje()) + "|"
                     + String.format("%-9s", l.getVccorriente()) + "|" + String.format("%-10s", l.getVcpotactiva()) + "|"

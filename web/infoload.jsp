@@ -25,7 +25,7 @@
                     <tr>
                         <td>
                             <h3>
-                                Carga de informaci&oacute;n de Usuarios, Roles y 
+                                Carga de informaci&oacute;n de Medidores, Usuarios, Roles y 
                                 <br>Políticas desde el Sistema Administrativo
                             </h3>
                             <s:form theme="simple" action="/LoadInfo">

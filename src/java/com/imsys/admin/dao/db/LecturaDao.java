@@ -34,7 +34,8 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setNidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setVcfrecuencia(result.getString("VCFRECUENCIA"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -44,7 +45,7 @@ public class LecturaDao {
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
-                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREA"));
                 lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
@@ -78,7 +79,8 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setNidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setVcfrecuencia(result.getString("VCFRECUENCIA"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -88,7 +90,7 @@ public class LecturaDao {
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
-                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREA"));
                 lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
@@ -122,7 +124,8 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setNidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setVcfrecuencia(result.getString("VCFRECUENCIA"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -132,7 +135,7 @@ public class LecturaDao {
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
-                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREA"));
                 lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);
@@ -166,7 +169,8 @@ public class LecturaDao {
                 Lectura lec = new Lectura();
                 lec.setTsfecha(result.getString("TSFECHA"));
                 lec.setVcserie(result.getString("VCSERIE"));
-                lec.setVcidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setNidmedidor(result.getInt("NIDMEDIDOR"));
+                lec.setVcfrecuencia(result.getString("VCFRECUENCIA"));
                 lec.setVcvoltaje(result.getString("VCVOLTAJE"));
                 lec.setVccorriente(result.getString("VCCORRIENTE"));
                 lec.setVcpotactiva(result.getString("VCPOTACTIVA"));
@@ -176,7 +180,7 @@ public class LecturaDao {
                 lec.setVceneactiva(result.getString("VCENEACTIVA"));
                 lec.setVcenereactiva(result.getString("VCENEREACTIVA"));
                 lec.setVccalceneact(result.getString("VCCALCENEACT"));
-                lec.setVccalcenereact(result.getString("VCCALCENEREACT"));
+                lec.setVccalcenereact(result.getString("VCCALCENEREA"));
                 lec.setLenviado(result.getInt("LENVIADO"));
 
                 results.add(lec);

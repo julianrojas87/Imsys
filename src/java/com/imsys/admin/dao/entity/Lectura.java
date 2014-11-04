@@ -27,6 +27,7 @@ public class Lectura implements Serializable{
     private String vccalceneact;
     private String vccalcenereact;
     private int lenviado;
+    private String vcfrecuencia;
 
     public Lectura(){}
     
@@ -46,12 +47,12 @@ public class Lectura implements Serializable{
         this.vcserie = vcserie;
     }
 
-    public int getVcidmedidor() {
+    public int getNidmedidor() {
         return nidmedidor;
     }
 
-    public void setVcidmedidor(int vcidmedidor) {
-        this.nidmedidor = vcidmedidor;
+    public void setNidmedidor(int nidmedidor) {
+        this.nidmedidor = nidmedidor;
     }
 
     public String getVcvoltaje() {
@@ -140,5 +141,13 @@ public class Lectura implements Serializable{
 
     public void setVccalcenereact(String vccalcenereact) {
         this.vccalcenereact = vccalcenereact;
+    }
+
+    public String getVcfrecuencia() {
+        return vcfrecuencia;
+    }
+
+    public void setVcfrecuencia(String vcfrecuencia) {
+        this.vcfrecuencia = vcfrecuencia;
     }
 }

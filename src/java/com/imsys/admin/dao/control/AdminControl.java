@@ -27,7 +27,6 @@ import com.imsys.admin.dao.entity.TipoEvento;
 import com.imsys.admin.dao.entity.Usuario;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,7 +36,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -479,7 +477,7 @@ public class AdminControl {
         } catch (FileNotFoundException ex) {
             try {
                 PrintWriter writer = new PrintWriter("/Metrolink/D113003/d113003.ini");
-                writer.println("org.sqlite.JDBC,jdbc:sqlite:/MetroLink/ImsysMobile.db");
+                writer.println("org.sqlite.JDBC,jdbc:sqlite:/Metrolink/ImsysMobile.db");
                 writer.close();
 
                 File ini = new File("/Metrolink/D113003/d113003.ini");

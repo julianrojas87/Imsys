@@ -29,10 +29,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="13">Consulta de Lecturas</th>
+                        <th colspan="14">Consulta de Lecturas</th>
                     </tr>
                     <tr>
-                        <td colspan="13">
+                        <td colspan="14">
                             <s:form theme="simple" action="/SearchLecs">
                                 Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
                                 Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
@@ -46,6 +46,7 @@
                         <th>Fecha</th>
                         <th>ID Medidor</th>
                         <th>Serial de Medidor</th>
+                        <th>Frecuencia (Hz)</th>
                         <th>Voltaje (V)</th>
                         <th>Corriente (A)</th>
                         <th>Potencia Activa (W)</th>
@@ -60,7 +61,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="13">
+                        <td colspan="14">
                             <div id="paging">
                                 <ul>
                                     <li>
@@ -148,8 +149,9 @@
                     %>
                     <tr class="alt">
                         <td><%=l.getTsfecha()%></td>
-                        <td><%=l.getVcidmedidor()%></td>
+                        <td><%=l.getNidmedidor()%></td>
                         <td><%=l.getVcserie()%></td>
+                        <td><%=l.getVcfrecuencia()%></td>
                         <td><%=l.getVcvoltaje()%></td>
                         <td><%=l.getVccorriente()%></td>
                         <td><%=l.getVcpotactiva()%></td>
@@ -166,8 +168,9 @@
                     %>
                     <tr>
                         <td><%=l.getTsfecha()%></td>
-                        <td><%=l.getVcidmedidor()%></td>
+                        <td><%=l.getNidmedidor()%></td>
                         <td><%=l.getVcserie()%></td>
+                        <td><%=l.getVcfrecuencia()%></td>
                         <td><%=l.getVcvoltaje()%></td>
                         <td><%=l.getVccorriente()%></td>
                         <td><%=l.getVcpotactiva()%></td>

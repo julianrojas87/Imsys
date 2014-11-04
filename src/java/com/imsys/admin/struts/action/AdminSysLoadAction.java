@@ -106,8 +106,8 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
 
         if (urlConnection.getResponseMessage().equals("OK")) {
             file = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
-            //Socket socket = new Socket(ip, socketport);
-            Socket socket = new Socket("192.168.1.64", socketport);
+            Socket socket = new Socket(ip, socketport);
+            //Socket socket = new Socket("192.168.1.64", socketport);
             InputStream is = socket.getInputStream();
             OutputStream output = new FileOutputStream(file);
             BufferedOutputStream bos = new BufferedOutputStream(output);

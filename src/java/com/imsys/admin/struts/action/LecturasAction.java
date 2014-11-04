@@ -43,6 +43,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             }
         }
 
+        session.setAttribute("alllecs", lecs);
         session.setAttribute("lecturas", displecs);
         session.setAttribute("totallecs", lecs.size());
         session.setAttribute("actuallec", 1);
@@ -53,8 +54,9 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
     }
 
     public String displayN() {
-        AdminControl ac = new AdminControl();
-        ArrayList<Lectura> lecs = ac.getLecturas();
+        //AdminControl ac = new AdminControl();
+        //ArrayList<Lectura> lecs = ac.getLecturas();
+        ArrayList<Lectura> lecs = (ArrayList<Lectura>) session.getAttribute("alllecs");
         int total = (lecs.size() / 10) + 1;
         int opt = Integer.parseInt(this.getBtnopt());
         List<Lectura> displecs = new ArrayList();
@@ -98,7 +100,8 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             Date ini = format.parse(this.getDateini());
             Date fin = format.parse(this.getDatefin());
             if (fin.after(ini) || fin.equals(ini)) {
-                ArrayList<Lectura> all = ac.getLecturas();
+                ArrayList<Lectura> all = (ArrayList<Lectura>) session.getAttribute("alllecs");
+                //ArrayList<Lectura> all = ac.getLecturas();
                 for (Lectura l : all) {
                     String day = l.getTsfecha().split(" ")[0].split("/")[2];
                     String month = l.getTsfecha().split(" ")[0].split("/")[1];
@@ -131,7 +134,7 @@ public class LecturasAction extends ActionSupport implements ServletRequestAware
             if (displecs.size() > 0) {
                 ArrayList<Lectura> temp = new ArrayList();
                 for (Lectura l : displecs) {
-                    if (l.getVcidmedidor() == Integer.parseInt(this.getIdmedidor())) {
+                    if (l.getNidmedidor() == Integer.parseInt(this.getIdmedidor())) {
                         temp.add(l);
                     }
                 }
