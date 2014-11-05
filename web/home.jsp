@@ -6,4 +6,4 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<div><img src="resources/img/logo-horizontal.jpg" width="790" height="350" alt="IMSYS" /></div>
+<div></div>

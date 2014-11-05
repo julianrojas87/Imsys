@@ -11,23 +11,23 @@
 <!DOCTYPE html>
 <%
     Usuario u = (Usuario) session.getAttribute("userObject");
-    String rol = u.getVcroll();
-    Calendar cal = Calendar.getInstance();
-    String date = cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR);
+    String rol = (String) session.getAttribute("rol");
+    String date = (String) session.getAttribute("date");
 %>
 <html>
     <head>
         <title>IMSYS WEB</title>
+        <link rel="shortcut icon" href="resources/img/logo-vertical.jpg"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="resources/css/simex-1.css"/>
         <link rel="stylesheet" href="resources/css/Menu.css">
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="banner">
-            <table width="100%" border="0" align="center">
+        <div>
+            <table width="85%" border="0">
                 <tr>
-                    <td align="left" width="451" height="100"><div><img src="resources/img/logo-horizontal.jpg" width="451" height="200" alt="IMSYS"/></div></td>
+                    <td align="center"><div><img src="resources/img/logo-horizontal.jpg" width="451" height="200" alt="IMSYS"/></div></td>
                     <td align="right" width="100%">
                         <div id="texto"><strong>Bienvenido: <%=(String) session.getAttribute("username")%></strong>&nbsp;&nbsp;
                             <br/>Rol de usuario: <strong> <%=rol%></strong>
@@ -47,7 +47,7 @@
                                 <li><s:a action="/GoHome"><span>Home</span></s:a></li>
                                 <li class='has-sub'><a href='#'><span>Archivos</span></a>
                                     <ul>
-                                        <li><s:a action="/VerSetup"><span>Default Setup</span></s:a>
+                                        <li><s:a action="/VerSetup"><span>Configuraci&oacute;n</span></s:a>
                                     <li><s:a action="/VerMedidores"><span>Medidores</span></s:a>
                                     </ul>
                                 </li>

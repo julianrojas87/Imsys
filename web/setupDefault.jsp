@@ -19,7 +19,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="2">Default Setup</th>
+                            <th colspan="2">Configuraci&oacute;n</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@
                                 Puerto Socket: <s:textfield name="ptosocket"/><br>
                                 Direcci&oacute;n IP Local: <s:textfield name="diriploc"/><br>
                                 Direcci&oacute;n IP WAN: <s:textfield name="diripwan"/><br>
-                                Tipo de Red: WAN<s:checkbox name="wan"/> LAN <s:checkbox name="lan"/>
+                                Tipo de Red: <s:radio name="nettype" list="network"/>
                             </td>
                             <td>
                                 Admin Servlet: <s:textfield name="servlet"/><br>

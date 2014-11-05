@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="shortcut icon" href="resources/img/logo-vertical.jpg"> 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>IMSYS</title>
@@ -23,7 +24,7 @@
             <table border="0" align="center" width="53" bgcolor="white">
                 <tr>
                     <td align="center" colspan="2">
-                        <div><img src="resources/img/logo-vertical.jpg" width="496" height="370" alt="IMSYS" /></div>
+                        <div><img src="resources/img/logo-vertical.jpg" width="410" height="350" alt="IMSYS" /></div>
                     </td>
                 </tr>
                 <tr>

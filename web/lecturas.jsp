@@ -29,10 +29,10 @@
             <table>
                 <thead>
                     <tr>
-                        <th colspan="14">Consulta de Lecturas</th>
+                        <th colspan="13">Consulta de Lecturas</th>
                     </tr>
                     <tr>
-                        <td colspan="14">
+                        <td colspan="13">
                             <s:form theme="simple" action="/SearchLecs">
                                 Fecha Inicial: <sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date1" name="dateini" changeMonth="true" changeYear="true"/>
                                 Fecha Final:<sj:datepicker displayFormat="dd/mm/yy" size="10" theme="simple" id="date2" name="datefin" changeMonth="true" changeYear="true"/>
@@ -46,22 +46,21 @@
                         <th>Fecha</th>
                         <th>ID Medidor</th>
                         <th>Serial de Medidor</th>
-                        <th>Frecuencia (Hz)</th>
-                        <th>Voltaje (V)</th>
+                        <th>Tensi&oacute;n (Vol)</th>
                         <th>Corriente (A)</th>
-                        <th>Potencia Activa (W)</th>
-                        <th>Potencia Reactiva (Var)</th>
-                        <th>Potencia Aparente (Va)</th>
+                        <th>Potencia Activa (kW)</th>
+                        <th>Potencia Reactiva (kVAr)</th>
+                        <th>Potencia Aparente (VA)</th>
                         <th>Factor Potencia</th>
                         <th>Energ&iacute;a Activa (kWh)</th>
-                        <th>Energ&iacute;a Reactiva (kVarh)</th>
+                        <th>Energ&iacute;a Reactiva (kVArh)</th>
                         <th>Energ&iacute;a Activa Calculada</th>
                         <th>Energ&iacute;a Reactiva Calculada</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <td colspan="14">
+                        <td colspan="13">
                             <div id="paging">
                                 <ul>
                                     <li>
@@ -151,7 +150,6 @@
                         <td><%=l.getTsfecha()%></td>
                         <td><%=l.getNidmedidor()%></td>
                         <td><%=l.getVcserie()%></td>
-                        <td><%=l.getVcfrecuencia()%></td>
                         <td><%=l.getVcvoltaje()%></td>
                         <td><%=l.getVccorriente()%></td>
                         <td><%=l.getVcpotactiva()%></td>
@@ -170,7 +168,6 @@
                         <td><%=l.getTsfecha()%></td>
                         <td><%=l.getNidmedidor()%></td>
                         <td><%=l.getVcserie()%></td>
-                        <td><%=l.getVcfrecuencia()%></td>
                         <td><%=l.getVcvoltaje()%></td>
                         <td><%=l.getVccorriente()%></td>
                         <td><%=l.getVcpotactiva()%></td>

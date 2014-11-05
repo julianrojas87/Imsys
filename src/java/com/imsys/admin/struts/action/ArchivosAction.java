@@ -34,8 +34,6 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
     private String codcaja;
     private String diriploc;
     private String diripwan;
-    private boolean wan;
-    private boolean lan;
     private String ptohttp;
     private String ptosocket;
     private String freclec;
@@ -49,11 +47,13 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
     private String latitud;
     private String longitud;
     private String servlet;
+    private String nettype;
     private List<String> encodes = Arrays.asList("rtu", "ascii");
     private List<String> speeds = Arrays.asList("1200", "2400", "4800", "9600", "14400", "19200", "28800", "33600");
     private List<String> databits = Arrays.asList("5", "7", "8");
     private List<String> stopbits = Arrays.asList("1", "2");
     private List<String> parity = Arrays.asList("None", "Odd", "Even");
+    private List<String> network = Arrays.asList("LAN", "WAN");
 
     public String displaySetup() {
         AdminControl ac = new AdminControl();
@@ -79,9 +79,9 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         this.setLongitud(Float.toString(params.getNlongitud()));
         this.setServlet(params.getVcservlet());
         if (params.getLred() == 0) {
-            this.setLan(true);
+            this.setNettype("LAN");
         } else {
-            this.setWan(true);
+            this.setNettype("WAN");
         }
 
         Usuario u = (Usuario) session.getAttribute("userObject");
@@ -106,20 +106,7 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
         params.setVcparidad(this.getParidad());
         params.setVccodific(this.getCodific());
         params.setVcservlet(this.getServlet());
-
-        if (this.isLan() && this.isWan()) {
-            session.setAttribute("msj", "Elija sólamente un Tipo de Red");
-            session.setAttribute("mainopt", "setup");
-            return SUCCESS;
-        } else if (this.isLan()) {
-            params.setLred(0);
-        } else if (this.isWan()) {
-            params.setLred(1);
-        } else {
-            session.setAttribute("msj", "Elija al menos un Tipo de Red");
-            session.setAttribute("mainopt", "setup");
-            return SUCCESS;
-        }
+        params.setLred(this.getNettype().equals("LAN") ? 0 : 1);
 
         int i = 0;
         try {
@@ -525,23 +512,7 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
     public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
-
-    public boolean isWan() {
-        return wan;
-    }
-
-    public void setWan(boolean wan) {
-        this.wan = wan;
-    }
-
-    public boolean isLan() {
-        return lan;
-    }
-
-    public void setLan(boolean lan) {
-        this.lan = lan;
-    }
-
+    
     public List<String> getSpeeds() {
         return speeds;
     }
@@ -588,5 +559,21 @@ public class ArchivosAction extends ActionSupport implements ServletRequestAware
 
     public void setServlet(String servlet) {
         this.servlet = servlet;
+    }
+
+    public List<String> getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(List<String> network) {
+        this.network = network;
+    }
+
+    public String getNettype() {
+        return nettype;
+    }
+
+    public void setNettype(String nettype) {
+        this.nettype = nettype;
     }
 }

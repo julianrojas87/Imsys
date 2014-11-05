@@ -8,6 +8,10 @@ package com.imsys.admin.struts.action;
 import com.imsys.admin.dao.control.AdminControl;
 import com.imsys.admin.dao.entity.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.interceptor.ServletRequestAware;
@@ -16,41 +20,46 @@ import org.apache.struts2.interceptor.ServletRequestAware;
  *
  * @author julian
  */
-public class SingInAction extends ActionSupport implements ServletRequestAware{
-    
+public class SingInAction extends ActionSupport implements ServletRequestAware {
+
     private String username;
     private String password;
     private HttpSession session;
-    
-    public String singin(){
+
+    public String singin() {
         // check the entered userName and password
-        if(getUsername() == null || getUsername().length() < 1){
+        if (getUsername() == null || getUsername().length() < 1) {
             session.setAttribute("msj", "Ingrese el Nombre de Usuario.");
             return INPUT;
-        } else if(getPassword() == null || getPassword().length() < 1){
+        } else if (getPassword() == null || getPassword().length() < 1) {
             session.setAttribute("msj", "Ingrese la Contraseña.");
             return INPUT;
-        } else{
+        } else {
             AdminControl ac = new AdminControl();
             Usuario u = ac.validateLogin(getUsername(), getPassword());
-            if(u != null){
-                if(u.getLactivo().equals("false")){
+            if (u != null) {
+                if (u.getLactivo().equals("false")) {
                     session.setAttribute("msj", "El usuario se encuentra bloqueado. Por favor, comuníquese con el administrador.");
                     return INPUT;
-                } else{
+                } else {
+                    Calendar cal = Calendar.getInstance(new Locale("en", "US"));
+                    DateFormat dateformat = new SimpleDateFormat("dd/MM/YYYY");
+                    String date = dateformat.format(cal.getTime());
+                    session.setAttribute("date", date);
+                    session.setAttribute("rol", ac.getRolbyCode(Integer.parseInt(u.getVcroll().trim())).getVcdesroll());
                     session.setAttribute("username", u.getVcnombre());
                     session.setAttribute("userObject", u);
                     session.setAttribute("mainopt", "home");
-                    ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] ingresó al sistema.", u.getVccoduser(), "Main/SingIn");
+                    ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] ingresó al sistema.", u.getVccoduser(), "Main/SingIn");
                     return SUCCESS;
                 }
-            } else{
+            } else {
                 session.setAttribute("msj", "El nombre de usuario o contraseña no es valido.");
                 return INPUT;
             }
         }
     }
-     
+
     public String singout() {
         // remove username from the session
         if (session.getAttribute("username") != null) {
@@ -58,17 +67,19 @@ public class SingInAction extends ActionSupport implements ServletRequestAware{
             session.removeAttribute("username");
             AdminControl ac = new AdminControl();
             Usuario u = ac.getUserbyName(name);
-            ac.addBitacoraEntry("El usuario ["+ u.getVcnombre()+"] salió del sistema.", u.getVccoduser(), "Main/SingOut");
+            if (!(u.getVcnombre() == null)) {
+                ac.addBitacoraEntry("El usuario [" + u.getVcnombre() + "] salió del sistema.", u.getVccoduser(), "Main/SingOut");
+            }
         }
         return SUCCESS;
     }
-    
-    public String goHome(){
+
+    public String goHome() {
         session.setAttribute("mainopt", "home");
         return SUCCESS;
     }
-    
-    public String goVersion(){
+
+    public String goVersion() {
         session.setAttribute("mainopt", "version");
         return SUCCESS;
     }

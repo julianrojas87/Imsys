@@ -34,8 +34,11 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,9 +54,9 @@ public class AdminControl {
         getConnection();
         Bitacora b = new Bitacora();
         BitacoraDao bDao = new BitacoraDao();
-        Calendar cal = Calendar.getInstance();
-        String date = cal.get(Calendar.DATE) + "/" + cal.get(Calendar.MONTH) + "/" + cal.get(Calendar.YEAR)
-                + "--" + cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE) + ":" + cal.get(Calendar.SECOND);
+        Calendar cal = Calendar.getInstance(new Locale("en", "US"));
+        DateFormat dateformat = new SimpleDateFormat("dd/MM/YYYY HH:mm:ss");
+        String date = dateformat.format(cal.getTime());
         try {
             b.setTsfecha(date);
             b.setVcoperacion(operation);
@@ -470,9 +473,9 @@ public class AdminControl {
             BufferedReader reader = new BufferedReader(new FileReader(ini));
             String line = reader.readLine();
             Class.forName(line.split(",")[0]);
+            cx = DriverManager.getConnection(line.split(",")[1]);
             //Class.forName("org.sqlite.JDBC");
             //cx = DriverManager.getConnection("jdbc:sqlite:/home/julian/ImsysMobileDB");
-            cx = DriverManager.getConnection(line.split(",")[1]);
         } catch (FileNotFoundException ex) {
             try {
                 PrintWriter writer = new PrintWriter("/Metrolink/D113003/d113003.ini");
