@@ -157,8 +157,7 @@
                     } else if (opt.equals("setup")) {
                     %>
                     <%@include file="/setupDefault.jsp"%>
-                    <%
-                    } else if (opt.equals("medidores")) {
+                    <%                    } else if (opt.equals("medidores")) {
                     %>
                     <jsp:include page="medidores.jsp" /> 
                     <%
@@ -170,7 +169,7 @@
                     %>
                     <jsp:include page="version.jsp" /> 
                     <%
-                    }
+                        }
                     %>
                 </td>
                 <td></td>

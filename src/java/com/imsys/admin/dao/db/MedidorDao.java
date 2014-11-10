@@ -34,7 +34,7 @@ public class MedidorDao {
                 Medidor medidor = new Medidor();
                 medidor.setVcserie(result.getString("VCSERIE"));
                 medidor.setNdir(Integer.parseInt(result.getString("NDIR")));
-                medidor.setLestado(Boolean.parseBoolean(result.getString("LESTADO")) ? "activo" : "inactivo");
+                medidor.setLestado(result.getInt("LESTADO"));
                 results.add(medidor);
             }
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class MedidorDao {
                 Medidor medidor = new Medidor();
                 medidor.setVcserie(result.getString("VCSERIE"));
                 medidor.setNdir(Integer.parseInt(result.getString("NDIR")));
-                medidor.setLestado(Boolean.parseBoolean(result.getString("LESTADO")) ? "activo" : "inactivo");
+                medidor.setLestado(result.getInt("LESTADO"));
                 results.add(medidor);
             }
         } catch (SQLException ex) {
@@ -98,7 +98,7 @@ public class MedidorDao {
                 Medidor medidor = new Medidor();
                 medidor.setVcserie(result.getString("VCSERIE"));
                 medidor.setNdir(Integer.parseInt(result.getString("NDIR")));
-                medidor.setLestado(Boolean.parseBoolean(result.getString("LESTADO")) ? "activo" : "inactivo");
+                medidor.setLestado(result.getInt("LESTADO"));
                 results.add(medidor);
             }
         } catch (SQLException ex) {
@@ -140,7 +140,7 @@ public class MedidorDao {
 
             stmt.setString(1, m.getVcserie());
             stmt.setInt(2, m.getNdir());
-            stmt.setString(3, m.getLestado());
+            stmt.setInt(3, m.getLestado());
 
             stmt.executeUpdate();
         }

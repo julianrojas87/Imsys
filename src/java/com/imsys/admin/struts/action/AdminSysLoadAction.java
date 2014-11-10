@@ -105,7 +105,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
         urlConnection.setConnectTimeout(5000);
 
         if (urlConnection.getResponseMessage().equals("OK")) {
-            file = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
+            file = new File("/Metrolink/retrieved.txt");
             Socket socket = new Socket(ip, socketport);
             //Socket socket = new Socket("192.168.1.64", socketport);
             InputStream is = socket.getInputStream();
@@ -139,7 +139,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
             InputStream input = urlConnection.getInputStream();
 
             byte[] buffer = new byte[4096];
-            file = new File(System.getProperty("user.home") + "/Desktop/retrieved.txt");
+            file = new File("/Metrolink/retrieved.txt");
             int n = -1;
             OutputStream output = new FileOutputStream(file);
 
@@ -223,7 +223,7 @@ public class AdminSysLoadAction extends ActionSupport implements ServletRequestA
                 Medidor m = new Medidor();
                 m.setVcserie(line.split(";")[1]);
                 m.setNdir(Integer.parseInt(line.split(";")[2]));
-                m.setLestado(line.split(";")[3].equals("activo") ? "true" : "false");
+                m.setLestado(Integer.parseInt(line.split(";")[3]));
                 meters.add(m);
             }
         }
